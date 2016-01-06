@@ -1,0 +1,17 @@
+<ion-view view-title="build">
+<ion-content>
+	
+	<!-- <ul class="list" ng-show="loaded && !optionsLoaded">
+    	<li class="item" ng-repeat="tier in tiers" ng-click="loadOptions(tier.Options.NumLayers)">
+      		{{tier.Name}}
+    	</li>
+	</ul> -->
+	
+	<ul class="list" ng-show="loaded && !optionsLoaded">
+    	<a class="item" ng-repeat="tier in tiers" ng-href="#/build/{{tier.Options.NumLayers}}">
+      		{{tier.Name}}
+    	</a>
+	</ul>
+
+</ion-content>
+</ion-view>

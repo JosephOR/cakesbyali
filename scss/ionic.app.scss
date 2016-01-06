@@ -1,0 +1,81 @@
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #387ef5 !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #444 !default;
+*/
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+.cake{
+	color:red;
+}
+
+
+.list .item.item-accordion {
+              line-height: 38px;
+              padding-top: 0;
+              padding-bottom: 0;
+              transition: 0.09s all linear;
+            }
+            .list .item.item-accordion.ng-hide {
+              line-height: 0px;
+            }
+            .list .item.item-accordion.ng-hide-add,
+            .list .item.item-accordion.ng-hide-remove {
+              display: block !important;
+
+        }
+
+        .select{
+            -webkit-transition: all 1s ease-in-out;
+            /*-webkit-transition: opacity 1s ease-in-out;*/
+            /*-webkit-transition: margin 2s ease-in-out;*/
+        }
+        .selectHeight{
+            /*transition-delay: 1s;*/
+             /*-webkit-transition: max-height 1s ease-in-out;*/
+        }
+        .selectClosed{
+            /*display:none;*/
+            max-height:0px;
+            opacity: 0;
+            margin-left:100%;
+             
+             
+            
+
+            /*displ ay: none;*/
+        }
+        .selectOpen{
+            max-height:400px;
+            opacity: 1;
+            margin-left:0px;
+            /*visibility: visible;*/
+            
+        }
+		.main-list{
+			margin-bottom: 0px !important;
+
+			 h4{
+	         	/*background: #ddd;*/
+	         	margin: 0px;
+	    		padding: 23px;
+	    		border-bottom: 1px solid yellow;
+	    		border-top: 1px solid yellow;
+         	}  
+		}
+         
+    		
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+

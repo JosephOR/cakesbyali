@@ -1,0 +1,30 @@
+
+            
+
+<ion-view view-title="landing">
+<ion-content>
+	<div class="row">
+		<p class="cake">
+			Start building you cake
+		</p>
+	</div>
+	<div class="row">
+		<button type="button" class="button button-block button-positive" ng-click="startBuilding()">Start Building</button>
+	</div>
+	<div class="row">
+		<p>
+			Select a cake from the gallery
+		</p>
+	</div>
+	<div class="row">
+		<button type="button" class="button button-block button-positive" ng-click="gotoGallery()">Go to Gallery</button>
+	</div>
+	<div class="row">
+		<button type="button" class="button button-block button-positive" on-tap="getPhoto()">photo</button>
+	</div>
+	<div class="row">
+
+		<img src="{{image}}" ng-show="hasImage" alt="" style="width=100%">
+	</div>
+    </ion-content></ion-view>
+        

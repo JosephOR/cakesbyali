@@ -1,0 +1,90 @@
+<ion-view view-title="build">
+<ion-content>
+		<div class="list main-list" ng-repeat="(key, value) in cakeOptions.tiers track by $index">
+			<h4 ng-click="activeTier($index)">Tier {{$index+1}}</h4>
+			<div class="select selectHeight" ng-class="openTierId===$index ? 'selectOpen' : 'selectClosed'" >
+				<label class="item item-input item-select" >
+			    	<div class="input-label">
+			    		<h3>Flavor</h3>
+			    	</div>
+			    <select ng-options="o as o for o in value.flavors" 
+			    		ng-change='setTier("flavour", tierFlavor, $index+1)'
+			    		ng-init="tierFlavor = value.flavors[0]"
+			    		ng-model="tierFlavor"></select>
+				</label>
+				<label class="item item-input item-select" >
+				    <div class="input-label">
+				      <h3>Type</h3>
+				    </div>
+			    	<select ng-options="o as o for o in value.Types" 
+			    			ng-change="setTier('type', tierType, $index+1)"
+			    			ng-init="tierType = value.Types[0]"
+			    			ng-model="tierType">
+	      			</select>
+				</label>
+			</div>
+		</div>
+		<!-- filling  -->
+		<div class="list main-list" ng-show="hasFilling" ng-repeat="(key, value) in cakeOptions.fillings track by $index">
+			<h4 ng-click="activeFilling($index)">Filling {{$index+1}}</h4>
+			<div class="select " ng-class="openFillingId===$index ? 'selectOpen' : 'selectClosed'" >
+				<label class="item item-input item-select select" >
+			    <div class="input-label">
+			      <h3>Flavor</h3>
+			    </div>
+			    <select ng-options="o as o for o in value.flavors"
+			    		ng-change='setFilling("flavour", flavor, $index+1)'
+			    		ng-init="flavor = value.flavors[0]"
+			    		ng-model="flavor"></select>
+			</label>
+			<label class="item item-input item-select select" >
+			    <div class="input-label">
+			      <h3>Type</h3>
+			    </div>
+		    	<select ng-options="o as o for o in value.Types"
+		    			ng-change='setFilling("type", type, $index+1)'
+		    			ng-init="type = value.Types[0]"
+		    			ng-model="type">
+      			</select>
+			</label>
+			</div>
+		</div> 
+
+		<!-- topping -->
+		<div class="list main-list" ng-repeat="(key, value) in cakeOptions.topping track by $index">
+			<h4 ng-click="activeTopping($index)">Topping</h4>
+			<div class="select " ng-class="openToppingId===$index ? 'selectOpen' : 'selectClosed'" >
+				<label class="item item-input item-select select" >
+			    <div class="input-label">
+			      <h3>Flavor</h3>
+			    </div>
+			    <select ng-options="o as o for o in value.flavors"
+			    		ng-change='setTopping("flavour", flavor)'
+			    		ng-init="flavor = value.flavors[0]"
+			    		ng-model="flavor"></select>
+			</label>
+			<label class="item item-input item-select select" >
+			    <div class="input-label">
+			      <h3>Type</h3>
+			    </div>
+		    	<select ng-options="o as o for o in value.Types"
+		    			ng-change='setTopping("type", type)'
+		    			ng-init="type = value.Types[0]"
+		    			ng-model="type">
+      			</select>
+			</label>
+			</div>
+		</div> 
+		
+		<div class="row">
+			<button type="button" class="button button-block button-positive" ng-click="buildCake()">Start Building</button>
+		</div>
+		<div class="row">
+			{{userCake}}
+		</div>
+		<button type="button" class="button button-block button-positive" ng-click="getLocation()">Get Location</button>
+		<h1 ng-show="addressEntered">
+			{{address}}
+		</h1>
+</ion-content>
+</ion-view>

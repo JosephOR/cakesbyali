@@ -1,0 +1,62 @@
+{
+	"CakeOptions" : {
+		"Tier" :  {
+			"Flavour" : true,
+			"Type" : true
+		},
+		"Topping" : {
+			"Icing" : {
+				"Flavour" : true,
+				"Colour" : true
+			},
+			"Buttercream" : {
+				"Flavour" : true,
+				"Colour" : true
+			}
+		},
+		"Flavours" : [
+			"Chocolate",
+			"Orange",
+			"Lemon"
+		],
+		"Fillings" : [
+			"cream",
+			"Jam",
+			"Chocolate",
+			"Buttercream"
+		],
+		"Colours" : [
+			"Red",
+			"Yellow",
+			"Pink"
+		],
+		"Types" : [
+			"Biscuit",
+			"Sponge"
+		]
+	},
+	"Tiers" : {
+		"Tier1" : {
+			"Name" : "One Tier Cake",
+			"Options" : {
+				"Topping" : true,
+				"NumLayers" : 1
+			}
+		},
+		"Tier2" : {
+			"Name" : "Two Tier Cake",
+			"Options" : {
+				"Topping" : true,
+				"NumLayers" : 2
+			}
+		},
+		"Tier3" : {
+			"Name" : "Three Tier Cake",
+			"Options" : {
+				"Topping" : true,
+				"NumLayers" : 3
+			}
+		}
+
+	}
+}
