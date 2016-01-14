@@ -17,7 +17,10 @@ angular.module('cakes')
 //   	}
 
   
-.controller('loginCtrl', function($scope, $state, $q, UserService, $ionicLoading, $location) {
+.controller('loginCtrl', function($scope, $state, $q, UserService, $ionicLoading, $location, $firebaseObject, $rootScope) {
+    var ref2 = new Firebase("https://cakesbyali.firebaseio.com/CakeOptions");
+    $rootScope.optionsRef = $firebaseObject(ref2);
+
     $scope.noLogin = function (){
       $location.path( '/landing' );
       }

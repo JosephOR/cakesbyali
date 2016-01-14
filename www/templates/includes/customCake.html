@@ -1,0 +1,86 @@
+<div class="list main-list list-border" ng-repeat="(key, value) in cakeOptions.tiers track by $index">
+	<h4 ng-click="activeTier($index)">Tier {{$index+1}}</h4>
+	<div class="select selectHeight" ng-class="openTierId===$index ? 'selectOpen' : 'selectClosed'" >
+		<label class="item item-input item-select" >
+			<div class="input-label">
+				<h3>Flavor</h3>
+			</div>
+			<select ng-options="o as o for o in value.flavors" 
+			ng-change='setTier("flavour", tierFlavor, $index+1)'
+			ng-init="tierFlavor = value.flavors[0]"
+			ng-model="tierFlavor"></select>
+		</label>
+		<label class="item item-input item-select" >
+			<div class="input-label">
+				<h3>Type</h3>
+			</div>
+			<select ng-options="o as o for o in value.Types" 
+			ng-change="setTier('type', tierType, $index+1)"
+			ng-init="tierType = value.Types[0]"
+			ng-model="tierType">
+		</select>
+	</label>
+
+	</div>
+	<div class="build-chevron" ng-class="openTierId===$index ? 'rotate-chevron' : 'normal-chevron'">
+		<i class="icon ion-chevron-down"></i>
+	</div>
+
+</div>
+<div class="row">
+	<button type="button" class="button button-block button-positive" ng-click="addTier()">Add tier</button>
+</div>
+<div class="list main-list list-border" ng-repeat="(key, value) in cakeOptions.topping track by $index">
+	<h4 ng-click="activeTopping($index)">Topping</h4>
+	<div class="select " ng-class="openToppingId===$index ? 'selectOpen' : 'selectClosed'" >
+		<label class="item item-input item-select select" >
+			<div class="input-label">
+				<h3>Flavor</h3>
+			</div>
+			<select ng-options="o as o for o in value.flavors"
+			ng-change='setTopping("flavour", flavor)'
+			ng-init="flavor = value.flavors[0]"
+			ng-model="flavor"></select>
+		</label>
+		<label class="item item-input item-select select" >
+			<div class="input-label">
+				<h3>Type</h3>
+			</div>
+			<select ng-options="o as o for o in value.Types"
+			ng-change='setTopping("type", type)'
+			ng-init="type = value.Types[0]"
+			ng-model="type">
+		</select>
+	</label>
+	</div>
+	<div class="build-chevron" ng-class="openToppingId===$index ? 'rotate-chevron' : 'normal-chevron'">
+		<i class="icon ion-chevron-down"></i>
+	</div>
+</div>
+<div class="list main-list list-border" ng-show="hasFilling" ng-repeat="(key, value) in cakeOptions.fillings track by $index">
+	<h4 ng-click="activeFilling($index)">Filling {{$index+1}}</h4>
+	<div class="select " ng-class="openFillingId===$index ? 'selectOpen' : 'selectClosed'" >
+		<label class="item item-input item-select select" >
+			<div class="input-label">
+				<h3>Flavor</h3>
+			</div>
+			<select ng-options="o as o for o in value.flavors"
+			ng-change='setFilling("flavour", flavor, $index+1)'
+			ng-init="flavor = value.flavors[0]"
+			ng-model="flavor"></select>
+		</label>
+		<label class="item item-input item-select select" >
+			<div class="input-label">
+				<h3>Type</h3>
+			</div>
+			<select ng-options="o as o for o in value.Types"
+			ng-change='setFilling("type", type, $index+1)'
+			ng-init="type = value.Types[0]"
+			ng-model="type">
+			</select>
+		</label>
+	</div>
+	<div class="build-chevron" ng-class="openFillingId===$index ? 'rotate-chevron' : 'normal-chevron'">
+		<i class="icon ion-chevron-down"></i>
+	</div>
+</div> 

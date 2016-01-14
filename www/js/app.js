@@ -51,6 +51,16 @@ angular.module("cakes", ["ionic", "firebase"])
       templateUrl: "templates/build.html",
       controller: 'buildCtrl'
     })
+    .state('templates', {
+      url: "/templates",
+      templateUrl: "templates/templates.html",
+      controller: 'templatesCtrl'
+    })
+    .state('finish', {
+      url: "/finish",
+      templateUrl: "templates/finish.html",
+      controller: 'finishCtrl'
+    })
     
     // .state('state2', {
     //   url: "/state2",

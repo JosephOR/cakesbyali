@@ -1,0 +1,18 @@
+<ion-view view-title="templates">
+	<ion-content>
+		<div class="row">
+			<p class="intro-p">Please select a cake from the options below to begin customising your cake</p>
+		</div>
+		<div class="template"  ng-repeat="temp in templates">
+			<img src="img/galleryTemplates/landing1.jpeg" width="100%" height="190px" alt="">
+			<div class="row template-descrption">
+				<div class="col" ng-click="gotoBuild(temp.numLayers)">
+					<h3 >{{temp.Name}}</h3>
+					<i class="icon ion-chevron-right template-chevron"></i>
+					<!-- <p >{{temp.Description}}</p> -->
+				</div>
+			</div>
+		</div>
+    </ion-content>
+</ion-view>
+        

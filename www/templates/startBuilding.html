@@ -1,17 +1,34 @@
 <ion-view view-title="build">
-<ion-content>
-	
-	<!-- <ul class="list" ng-show="loaded && !optionsLoaded">
-    	<li class="item" ng-repeat="tier in tiers" ng-click="loadOptions(tier.Options.NumLayers)">
-      		{{tier.Name}}
-    	</li>
-	</ul> -->
-	
-	<ul class="list" ng-show="loaded && !optionsLoaded">
-    	<a class="item" ng-repeat="tier in tiers" ng-href="#/build/{{tier.Options.NumLayers}}">
-      		{{tier.Name}}
-    	</a>
-	</ul>
+	<ion-content>
+		<div class="row">
+			<p class="intro-p">Please select a cake from the options below to begin customising your cake</p>
+		</div>
+		<!-- <ul class="list" ng-show="loaded && !optionsLoaded">
+	    	<a class="item" ng-repeat="tier in tiers" ng-href="#/build/{{tier.Options.NumLayers}}">
+		    	<div class="row">
+		    		<h3>{{tier.Name}}</h3> 
+		    	</div>
+		    	<div class="row">
+		    		<h4  class="start-description">{{tier.Description}}</h4>	
+		    	</div>
+	      		
+	      		<i class="icon ion-chevron-right"></i>
+	    	
+	      		
+	    	</a>
 
-</ion-content>
+		</ul> -->
+		<div class="list">
+
+    <a class="item item-thumbnail-left" ng-repeat="tier in tiers" ng-href="#/build/{{tier.Options.NumLayers}}">
+      <img src="{{tier.Image}}">
+      <h2>{{tier.Name}}</h2>
+      <p class="start-description">{{tier.Description}}</p>
+      <i class="icon ion-chevron-right"></i>
+    </a>
+
+    
+
+</div>
+	</ion-content>
 </ion-view>

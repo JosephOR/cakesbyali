@@ -1,9 +1,5 @@
 {
 	"CakeOptions" : {
-		"Tier" :  {
-			"Flavour" : true,
-			"Type" : true
-		},
 		"Topping" : [
 			"Buttercream",
 			"Icing"
@@ -32,23 +28,42 @@
 	"Tiers" : {
 		"Tier1" : {
 			"Name" : "One Tier Cake",
+			"Description" : "This cake will consist of one tier and one topping",
+			"Image" : "img/galleryTemplates/1tier.jpg",
 			"Options" : {
-				"Topping" : true,
 				"NumLayers" : 1
 			}
 		},
 		"Tier2" : {
 			"Name" : "Two Tier Cake",
+			"Description" : "This cake will consist of two tiers, one topping and a filling",
+			"Image" : "img/galleryTemplates/2tier.jpg",
 			"Options" : {
-				"Topping" : true,
 				"NumLayers" : 2
 			}
 		},
 		"Tier3" : {
 			"Name" : "Three Tier Cake",
+			"Description" : "his cake will consist of three tiers, one topping and two fillings",
+			"Image" : "img/galleryTemplates/3tier.jpg",
 			"Options" : {
-				"Topping" : true,
 				"NumLayers" : 3
+			}
+		},
+		"Kids" : {
+			"Name" : "Kids",
+			"Description" : "This is a custom cake, add tiers as needed",
+			"Image" : "img/galleryTemplates/kids.jpg",
+			"Options" : {
+				"NumLayers" : -1
+			}
+		},
+		"Occasions" : {
+			"Name" : "Ocassion",
+			"Description" : "This is a custom cake, add tiers as needed",
+			"Image" : "img/galleryTemplates/occassion.jpg",
+			"Options" : {
+				"NumLayers" : -1
 			}
 		}
 

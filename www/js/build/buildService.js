@@ -4,6 +4,11 @@ angular.module('cakes')
 .factory('address', ['$q', '$http', function($q, $http) {
 
     return {
+    	/**
+    	 * @function
+    	 * @param  {latitude-Lontitude}
+    	 * @return {promise}
+    	 */
 	    getAddress: function(options) {
 	    	var lat = options.coords.latitude;
 	    	var lng = options.coords.longitude;

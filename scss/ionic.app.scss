@@ -16,66 +16,159 @@ $dark:                            #444 !default;
 */
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
+
+
+$positive : #046380;
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+.pane{
+	background: $light;
+}
+.item-input{
+  padding: 6px 0 5px 35px;
+}
+.button.button-positive{
+	border-color: $positive;
+}
+.list-border{
+	border-bottom: 1px solid yellow;
+}
+.list-no-border{
+	border: none;
+    padding: 23px 23px;
+
+    h3{
+        font-size: 19px
+    }
+}
+
+.ion-chevron-right{
+  float:right;  
+  margin-right: 10px;
+  margin-top: -40px
+}
+
+.intro-p{
+  padding: 10px
+}
 .cake{
 	color:red;
 }
-
-
+.landing-holder{
+	padding: 12px;
+	color: $dark;
+}
+/**/
+.item p{
+ white-space: normal;
+ margin-top: 10px;
+ color: #444;
+ max-width: 220px
+}
+.start-description{
+ white-space: normal;
+ margin-top: 10px;
+ color: #444;
+}
 .list .item.item-accordion {
-              line-height: 38px;
-              padding-top: 0;
-              padding-bottom: 0;
-              transition: 0.09s all linear;
-            }
-            .list .item.item-accordion.ng-hide {
-              line-height: 0px;
-            }
-            .list .item.item-accordion.ng-hide-add,
-            .list .item.item-accordion.ng-hide-remove {
-              display: block !important;
+  line-height: 38px;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: 0.09s all linear;
+}
+.list .item.item-accordion.ng-hide {
+  line-height: 0px;
+}
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+  display: block !important;
 
-        }
+}
 
-        .select{
-            -webkit-transition: all 1s ease-in-out;
-            /*-webkit-transition: opacity 1s ease-in-out;*/
-            /*-webkit-transition: margin 2s ease-in-out;*/
-        }
-        .selectHeight{
-            /*transition-delay: 1s;*/
-             /*-webkit-transition: max-height 1s ease-in-out;*/
-        }
-        .selectClosed{
-            /*display:none;*/
-            max-height:0px;
-            opacity: 0;
-            margin-left:100%;
-             
-             
-            
+.build-chevron{
+ position: absolute;
+ right: 24px;
+ top: 25px;
+ font-size: 20px;
+ -webkit-transition: all .7s ease-in-out;
+}
+.rotate-chevron{
 
-            /*displ ay: none;*/
-        }
-        .selectOpen{
-            max-height:400px;
-            opacity: 1;
-            margin-left:0px;
-            /*visibility: visible;*/
-            
-        }
-		.main-list{
-			margin-bottom: 0px !important;
+ -webkit-transform: rotate(180deg) ;
+}
+.select{
+  -webkit-transition: all .7s ease-in-out;
+  /*-webkit-transition: opacity 1s ease-in-out;*/
+  /*-webkit-transition: margin 2s ease-in-out;*/
+}
+.selectHeight{
+  /*transition-delay: 1s;*/
+  /*-webkit-transition: max-height 1s ease-in-out;*/
+}
+.selectClosed{
+  /*display:none;*/
+  max-height:0px;
+  opacity: 0;
+  margin-left:100%;
 
-			 h4{
-	         	/*background: #ddd;*/
-	         	margin: 0px;
-	    		padding: 23px;
-	    		border-bottom: 1px solid yellow;
-	    		border-top: 1px solid yellow;
-         	}  
-		}
-         
-    		
-// Include all of Ionic
-@import "www/lib/ionic/scss/ionic";
 
+
+
+  /*displ ay: none;*/
+}
+.selectOpen{
+  max-height:400px;
+  opacity: 1;
+  margin-left:0px;
+  /*visibility: visible;*/
+
+}
+.main-list{
+ margin-bottom: 0px !important;
+
+ h4{
+   /*background: #ddd;*/
+   margin: 0px;
+   padding: 23px;
+   border-bottom: 1px solid yellow;
+   /*border-top: 1px solid yellow;*/
+ }  
+}
+.message-input{
+  width: 100%;
+  max-width: 100%;
+  padding: 0px;
+  textarea{
+   background: lightgrey;
+
+ }
+
+ p{
+   white-space: normal
+ }
+}
+
+/**/
+.template{
+	position: relative;
+}
+.template-descrption{
+	position: absolute;
+    bottom: 0px;
+    background: rgba(17, 17, 17, 0.85);
+    border-bottom: 1px solid yellow;
+
+    h3{
+        color: white
+    }
+
+    .template-chevron{
+        color: white;
+    margin-top: -29px;
+    }
+}
+
+  .footer-bar{
+    padding: 0px;
+  }

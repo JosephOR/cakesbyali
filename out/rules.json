@@ -1,0 +1,12 @@
+{
+	"source": {
+	    "include": [ "/Users/joe/dev/cakes/myapp/www/js/build" ],
+	    "exclude": [ "myProject/lib/ignore.js" ],
+	    "includePattern": ".+\\.js(doc)?$",
+	    "excludePattern": "(^|\\/|\\\\)_"
+	},
+	"templates": {
+	    "cleverLinks": false,
+	    "monospaceLinks": false
+	}
+}

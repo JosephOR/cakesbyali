@@ -4,8 +4,8 @@ angular.module('cakes')
 function startBuildingCtrl($scope, $location, $firebaseObject, $rootScope){
 
 	var ref = new Firebase("https://cakesbyali.firebaseio.com/Tiers");
-	var ref2 = new Firebase("https://cakesbyali.firebaseio.com/CakeOptions");
-	$rootScope.optionsRef = $firebaseObject(ref2);
+	
+	$scope.optionsRef = $rootScope.optionsRef;
 	$scope.loaded = false;
 	$scope.optionsLoaded = false;
 
