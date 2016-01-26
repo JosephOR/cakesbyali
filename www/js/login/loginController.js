@@ -3,27 +3,91 @@ angular.module('cakes')
 
 // function loginCtrl($scope, $location){
 
-// 	$scope.testbtn = function(){
-//     	var ref = new Firebase("https://cakesbyali.firebaseio.com");
-//     	ref.authWithOAuthPopup("facebook", function(error, authData) {
-//   			if (error) {
-//     			console.log("Login Failed!", error);
-//   			} else {
-//     			console.log("Authenticated successfully with payload:", authData);
-//     			alert("logged in")
-//   			}
-// 		});
+
 
 //   	}
 
   
 .controller('loginCtrl', function($scope, $state, $q, UserService, $ionicLoading, $location, $firebaseObject, $rootScope) {
-    var ref2 = new Firebase("https://cakesbyali.firebaseio.com/CakeOptions");
-    $rootScope.optionsRef = $firebaseObject(ref2);
+    $rootScope.currentPath = $location.path();
+    $rootScope.checkUser = function(){
+        if ($rootScope.loggedIn){
+            $location.path('/landing')
+        }
+    }
+    $rootScope.logout = function(){
+        $scope.userRef.unauth();
+        $location.path('/login')
+    }
 
+    console.log($rootScope.userID)
+    var ref2 = new Firebase("https://cakesbyali.firebaseio.com/CakeOptions");
+    $scope.userRef = new Firebase("https://cakesbyali.firebaseio.com");
+    $rootScope.optionsRef = $firebaseObject(ref2);
+    $scope.firebaseLogin = false;
+    $scope.email = null;
+    $scope.password = null;
+    $scope.user = {
+      email : '',
+      password : '',
+      created : false
+    }
+
+    $scope.clearUser = function (){
+        $scope.firebaseLogin = false;
+        // $scope.user.created = false;
+    }
     $scope.noLogin = function (){
       $location.path( '/landing' );
       }
+
+//////firbase login
+
+  $scope.showRegister = function(){
+    $scope.firebaseLogin = true;
+  }
+    $scope.register = function(){
+        $scope.userRef.createUser({
+            email    : $scope.user.email,
+            password : $scope.user.password
+        }, function(error, userData) {
+            if (error) {
+                console.log("Error creating user:", error);
+            } else {
+                console.log("Successfully created user account with uid:", userData.uid);
+                $rootScope.userID = userData.uid;
+                var ref  = new Firebase("https://cakesbyali.firebaseio.com/user");
+                ref.child($rootScope.userID).set({email : $scope.user.email});
+                $scope.user.email = '';
+                $scope.user.password = '';
+                $scope.user.created = true;
+                $scope.$apply();
+            }
+        });
+    }
+    $scope.Login = function(){
+        $scope.user.created = true;
+        $scope.firebaseLogin = true;
+    }
+
+    $scope.login = function(){
+        $scope.userRef.authWithPassword({
+            email    : $scope.user.email,
+            password : $scope.user.password
+        }, function(error, authData) {
+            if (error) {
+                console.log("Login Failed!", error);
+            } else {
+
+                console.log("Authenticated successfully with payload:", authData);
+                $rootScope.userID = authData.uid;
+                $location.path( '/landing' );
+                $rootScope.loggedIn = true;
+                $scope.$apply();
+            }
+        });
+    }
+
 
   // This is the success callback from the login method
   var fbLoginSuccess = function(response) {
@@ -46,6 +110,7 @@ angular.module('cakes')
       });
       $ionicLoading.hide();
       $state.go('app.home');
+      // $location.path( '/landing' );
     }, function(fail){
       // Fail get profile info
       console.log('profile info fail', fail);
@@ -77,7 +142,6 @@ angular.module('cakes')
 
   //This method is executed when the user press the "Login with facebook" button
   $scope.facebookSignIn = function() {
-    alert("hello")
     facebookConnectPlugin.getLoginStatus(function(success){
       if(success.status === 'connected'){
         // The user is logged in and has authenticated your app, and response.authResponse supplies
@@ -140,5 +204,23 @@ angular.module('cakes')
   return {
     getUser: getUser,
     setUser: setUser
+  };
+})
+.directive('loginOptions', function() {
+  return {
+    restrict: 'E',
+    templateUrl: 'templates/includes/loginOptions.html'
+  };
+})
+.directive('register', function() {
+  return {
+    restrict: 'E',
+    templateUrl: 'templates/includes/register.html'
+  };
+})
+.directive('login', function() {
+  return {
+    restrict: 'E',
+    templateUrl: 'templates/includes/login.html'
   };
 });

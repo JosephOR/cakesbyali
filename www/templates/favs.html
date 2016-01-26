@@ -1,0 +1,19 @@
+<ion-view view-title="favorites">
+<ion-content>
+	<!-- <a class="item item-thumbnail-left" ng-repeat="(key, value) in favs" ng-href="#/build/{{tier.Options.NumLayers}}"> -->
+
+	<a class="item item-thumbnail-left" 
+		ng-repeat="(key, value) in favs" 
+		ng-click="openModal(value)"
+		ng-show="favsLoaded">
+      	
+      	<img src="{{key.Image}}">
+    	<h2 class="start-title">{{key}}</h2>
+     	<p class="start-description">{{value.key}}</p>
+      	<i class="icon ion-chevron-right"></i>
+    </a>
+    <div class="row" ng-show="!favsLoaded">
+    	<ion-spinner></ion-spinner>
+    </div>
+</ion-content>
+</ion-view>

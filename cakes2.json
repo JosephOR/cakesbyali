@@ -44,7 +44,7 @@
 		},
 		"Tier3" : {
 			"Name" : "Three Tier Cake",
-			"Description" : "his cake will consist of three tiers, one topping and two fillings",
+			"Description" : "A three tier cake with one topping and two fillings",
 			"Image" : "img/galleryTemplates/3tier.jpg",
 			"Options" : {
 				"NumLayers" : 3
@@ -52,7 +52,7 @@
 		},
 		"Kids" : {
 			"Name" : "Kids",
-			"Description" : "This is a custom cake, add tiers as needed",
+			"Description" : "Create a cake with a theme of your choice",
 			"Image" : "img/galleryTemplates/kids.jpg",
 			"Options" : {
 				"NumLayers" : -1
@@ -60,7 +60,7 @@
 		},
 		"Occasions" : {
 			"Name" : "Ocassion",
-			"Description" : "This is a custom cake, add tiers as needed",
+			"Description" : "Create a cake for any special occassion",
 			"Image" : "img/galleryTemplates/occassion.jpg",
 			"Options" : {
 				"NumLayers" : -1

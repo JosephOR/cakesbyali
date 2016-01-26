@@ -1,23 +1,37 @@
 
-  <ion-modal-view>
+<ion-modal-view>
     <ion-header-bar>
-      <h1 class="title">Your cake</h1>
+        <h1 class="title">Your cake</h1>
     </ion-header-bar>
     <ion-content>
-      <div class=" " ng-repeat="(key, val) in userCake">
-      	<h3 class="message-input">{{key}}</h3>
-      	<!-- <br /> -->
-      	<ul class="message-input">
-      		<li ng-repeat="(k, v) in val">
-      			{{k}}:{{v}}
-      		</li>
-      	</ul>
-      </div>
-      <div class="row">
-			<button type="button" class="button button-block button-positive" ng-click="closeModal()">cancel</button>
-		</div>
-		<div class="row">
-			<button type="button" class="button button-block button-positive" ng-click="orderCake()">proceed</button>
-		</div>
+        <div class="modal-details" ng-repeat="(key, val) in userCake">
+            <div class="row">
+                <h3 class="message-input col">{{key}}</h3>
+            </div>
+            
+         <!-- <br /> -->
+              	<!-- <ul class="message-input row">
+              		<li ng-repeat="(k, v) in val">
+              			{{k}}:{{v}}
+              		</li>
+              	</ul> -->
+            <div class="row" ng-repeat="(k, v) in val">
+                <p class="col-25">
+                    {{k}}
+                </p>
+                <p class="col-33">
+                    {{v}}
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+            <button type="button" class="button button-block button-positive" ng-click="closeModal()">Edit</button>
+        </div>
+        <div class="col">
+            <button type="button" class="button button-block button-positive" ng-click="orderCake()">Proceed</button>
+        </div>
+        </div>
+
     </ion-content>
-  </ion-modal-view>
+</ion-modal-view>

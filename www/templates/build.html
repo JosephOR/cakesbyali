@@ -17,24 +17,34 @@
 				</div>
 			</label>
 		</div>
-		<div class="list">
+		<div class="list" ng-show="hasAddress">
 			<label class="item item-input item-floating-label">
 				<span class="input-label">Location</span>
 				<input type="text" placeholder="Location" ng-model="address">
 			</label>
 		</div>
-		<div class="row">
+		<div class="row" ng-hide="hasAddress">
 			<button type="button" class="button button-block button-positive" ng-click="getLocation()">Get Location</button>
 		</div>
 		<div class="row">
-			<button type="button" class="button button-block button-positive" ng-click="getPhoto()">photo</button>
+			<div class="col">
+				<button type="button" class="button button-block button-positive" ng-click="getPhoto('phone')">photo</button>
+			</div>
+			<div class="col">
+				<button type="button" class="button button-block button-positive" ng-click="getPhoto('library')">library</button>
+			</div>
 		</div>
 		
 		<div class="row" ng-show="hasImage">
 			<img src="{{image}}"  width="100%" height="400px" alt="">
 		</div>
 		
-
+		<div class="list" >
+			<label class="item item-input item-floating-label">
+				<span class="input-label">Cake Name</span>
+				<input type="text" placeholder="Cake Name" ng-model="cakeName" ng-change="setName(cakeName)">
+			</label>
+		</div>
 		<div class="row">
 			<button type="button" class="button button-block button-positive" ng-click="openModal()">Order Cake</button>
 		</div>

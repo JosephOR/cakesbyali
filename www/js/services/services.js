@@ -3,15 +3,22 @@ angular.module('cakes')
 .factory('Camera', ['$q', function($q) {
 
     return {
-	    getPicture: function(options) {
+	    getPicture: function(where) {
 	      var q = $q.defer();
-
+	      var source;
+	      if( where === 'phone'){
+	      	source = 'CAMERA'
+	      }
+	      else{
+	      	source = 'PHOTOLIBRARY'
+	      }
 	      navigator.camera.getPicture(function(result) {
 	        // Do any magic you need
 	        q.resolve(result);
 	      }, function(err) {
 	        q.reject(err);
 	      }, {  quality : 75,
+	      		sourceType : Camera.PictureSourceType[source],
 				allowEdit : true,
 				encodingType: Camera.EncodingType.JPEG,
 				targetWidth: 300,

@@ -4,17 +4,17 @@ angular.module('cakes')
 
 function buildCtrl($ionicModal, $scope, $location, Camera, $firebaseObject, $stateParams, $rootScope, Location, address){
 	
-	// var ref = new Firebase("https://cakesbyali.firebaseio.com/Tiers");
-	// var ref2 = new Firebase("https://cakesbyali.firebaseio.com/CakeOptions");
+	$scope.userRef = new Firebase("https://cakesbyali.firebaseio.com/user");
 	$scope.optionsRef = $rootScope.optionsRef;
 	console.log($scope.optionsRef)
 	$scope.loaded = false;
 	$scope.custom = false;
 	$scope.optionsLoaded = false;
-	$scope.addressEntered = false;
+	$scope.hasAddress = false;
 	$scope.hasFilling = true;
 	$scope.address = "";
 	$scope.userCake = {};
+	$scope.userCake.name = {}
 	$scope.userCake.topping = {
 		"type": "",
 		"flavor": ""
@@ -39,7 +39,7 @@ function buildCtrl($ionicModal, $scope, $location, Camera, $firebaseObject, $sta
 			address.getAddress(latLong).then(function(address){
 				if(address){
 					$scope.address = address.results[1].formatted_address;
-					$scope.addressEntered = true;
+					$scope.hasAddress = true;
 					$scope.userCake.address = $scope.address;
 					// $scope.$apply();
 				}
@@ -51,8 +51,8 @@ function buildCtrl($ionicModal, $scope, $location, Camera, $firebaseObject, $sta
 		});
 	};
 	
-	$scope.getPhoto = function() {
-		Camera.getPicture().then(function(imageURI) {
+	$scope.getPhoto = function(where) {
+		Camera.getPicture(where).then(function(imageURI) {
       		// console.log(imageURI);
       		// alert(imageURI)
       		$scope.image = imageURI;
@@ -209,6 +209,9 @@ function buildCtrl($ionicModal, $scope, $location, Camera, $firebaseObject, $sta
 		$scope.count++;
 	}
 
+	$scope.setName = function (name){
+		$scope.userCake.name.text = ""+name;
+	}
 	$scope.setTier = function (value, selectedOption, index){
 		var option = value;
 		var tier = "tier"+index;
@@ -261,6 +264,14 @@ function buildCtrl($ionicModal, $scope, $location, Camera, $firebaseObject, $sta
 	}
 	$scope.orderCake = function (){
 		$rootScope.userCake = $scope.userCake;
+		
+		// get from user input
+		$scope.userRef.child($rootScope.userID)
+			.child($scope.userCake.name.text)
+			.push($rootScope.userCake);
+		// var pushRef = user.push($rootScope.userCake);
+		// $scope.key = pushRef.key();
+
 		$scope.closeModal();
 		$location.path('/finish')
 	}
@@ -279,18 +290,18 @@ function buildCtrl($ionicModal, $scope, $location, Camera, $firebaseObject, $sta
 	$scope.closeModal = function() {
 		$scope.modal.hide();
 	};
-  //Cleanup the modal when we're done with it!
-  $scope.$on('$destroy', function() {
-  	$scope.modal.remove();
-  });
-  // Execute action on hide modal
-  $scope.$on('modal.hidden', function() {
-    // Execute action
-});
-  // Execute action on remove modal
-  $scope.$on('modal.removed', function() {
-    // Execute action
-});
+  	//Cleanup the modal when we're done with it!
+  	$scope.$on('$destroy', function() {
+  		$scope.modal.remove();
+  	});
+  	// Execute action on hide modal
+  	$scope.$on('modal.hidden', function() {
+  	  // Execute action
+	});
+	  // Execute action on remove modal
+	 $scope.$on('modal.removed', function() {
+	    // Execute action
+	});
 
 
 }

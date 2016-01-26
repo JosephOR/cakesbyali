@@ -1,26 +1,31 @@
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
 angular.module("cakes", ["ionic", "firebase"])
-.run(function($ionicPlatform) {
- 
-  
-  $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if(window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    }
-    if(window.StatusBar) {
-      StatusBar.styleDefault();
-    }
-  });
+.run(function($ionicPlatform, $rootScope) {
+
+
+    $ionicPlatform.ready(function() {
+        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+        // for form inputs)
+        if(window.cordova && window.cordova.plugins.Keyboard) {
+            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        }
+        if(window.StatusBar) {
+            StatusBar.styleDefault();
+        }
+    });
+
+    $rootScope.$on('$stateChangeStart', 
+        function(event, toState, toParams, fromState, fromParams){ 
+            if(toState.url === '/landing' || toState.url === '/login'){
+                $rootScope.currentPath = true;
+            }
+            else{
+                $rootScope.currentPath = false;
+            }
+        })
 
 })
 .config(function($stateProvider, $urlRouterProvider) {
-  
+
   // For any unmatched url, redirect to /state1
   $urlRouterProvider.otherwise("/login");
   //
@@ -32,47 +37,41 @@ angular.module("cakes", ["ionic", "firebase"])
         controller: 'loginCtrl'
     })
     .state('landing', {
-      url: "/landing",
-      templateUrl: "templates/landing.html",
-      controller: 'landingCtrl'
+        url: "/landing",
+        templateUrl: "templates/landing.html",
+        controller: 'landingCtrl'
     })
     .state('startBuilding', {
-      url: "/startBuilding",
-      templateUrl: "templates/startBuilding.html",
-      controller: 'startBuildingCtrl'
+        url: "/startBuilding",
+        templateUrl: "templates/startBuilding.html",
+        controller: 'startBuildingCtrl'
     })
     .state('gallery', {
-      url: "/gallery",
-      templateUrl: "templates/gallery.html",
-      controller: 'galleryCtrl'
+        url: "/gallery",
+        templateUrl: "templates/gallery.html",
+        controller: 'galleryCtrl'
     })
     .state('build', {
-      url: "/build/:id",
-      templateUrl: "templates/build.html",
-      controller: 'buildCtrl'
+        url: "/build/:id",
+        templateUrl: "templates/build.html",
+        controller: 'buildCtrl'
     })
     .state('templates', {
-      url: "/templates",
-      templateUrl: "templates/templates.html",
-      controller: 'templatesCtrl'
+        url: "/templates",
+        templateUrl: "templates/templates.html",
+        controller: 'templatesCtrl'
     })
     .state('finish', {
-      url: "/finish",
-      templateUrl: "templates/finish.html",
-      controller: 'finishCtrl'
+        url: "/finish",
+        templateUrl: "templates/finish.html",
+        controller: 'finishCtrl'
     })
-    
-    // .state('state2', {
-    //   url: "/state2",
-    //   templateUrl: "partials/state2.html"
-    // })
-    // .state('state2.list', {
-    //   url: "/list",
-    //   templateUrl: "partials/state2.list.html",
-    //   controller: function($scope) {
-    //     $scope.things = ["A", "Set", "Of", "Things"];
-    //   }
-    // });
+    .state('favs', {
+        url: "/favs",
+        templateUrl: "templates/favs.html",
+        controller: 'favouritesCtrl'
+    });
+
 });
 
 
@@ -101,7 +100,7 @@ angular.module("cakes", ["ionic", "firebase"])
 // });
 
 //   }
- 
+
 // })
 
 // .factory("Items", function($firebaseArray) {

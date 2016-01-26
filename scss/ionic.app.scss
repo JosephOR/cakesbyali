@@ -18,12 +18,50 @@ $dark:                            #444 !default;
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 
-$positive : #046380;
+$positive : #466C92;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
+.register-list{
+  width:100% !important;
+}
+.login-bg{
+    background-image: url("../img/login.jpg");
+     -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    .scroll{
+        background-color:rgba(255, 255, 255, 0.63);
+    }
+}
+.login-top{
+        margin-top: 160px;
+    padding-top: 50px;
+}
+.fb-signin{
+    /*margin: 0 10px;*/
+    padding-bottom: 50px;
+    .facebook-sign-in{
+        background-color: #3b5998;
+        border-color: #3b5998;
+    }
+}
+.main-header{
+    background: $positive !important;
+
+    .title{
+        color: white !important
+    }
+}
 .pane{
 	background: $light;
+    letter-spacing: .5px;
+
+
+}
+.tabs{
+    /*background-color: #ee782d;*/
+    /*color:white;*/
 }
 .item-input{
   padding: 6px 0 5px 35px;
@@ -32,7 +70,7 @@ $positive : #046380;
 	border-color: $positive;
 }
 .list-border{
-	border-bottom: 1px solid yellow;
+	border-bottom: 1px solid #046380;
 }
 .list-no-border{
 	border: none;
@@ -42,15 +80,27 @@ $positive : #046380;
         font-size: 19px
     }
 }
-
+.item-building{
+  position: relative;
+  background: white;
+}
 .ion-chevron-right{
-  float:right;  
-  margin-right: 10px;
-  margin-top: -40px
+    position: absolute;
+    right: 18px;
+    top: 40%;
+    color: $positive;
+}
+.temp-chevron{
+  top: 80%;
+}
+.ion-chevron-down{
+  color: $positive
 }
 
 .intro-p{
-  padding: 10px
+      padding: 20px 10px;
+    color: #353535;
+    font-size: 15px;
 }
 .cake{
 	color:red;
@@ -61,21 +111,29 @@ $positive : #046380;
 }
 /**/
 .item p{
- white-space: normal;
- margin-top: 10px;
- color: #444;
- max-width: 220px
+    white-space: normal;
+    margin-top: 10px;
+    color: #5A5A5A;
+    max-width: 78%;
+}
+.item h2{
+    font-size: 20px;
+    font-weight: 600;
+}
+.start-title{
+    font-size: 20px;
+    color: $positive;
 }
 .start-description{
- white-space: normal;
- margin-top: 10px;
- color: #444;
+    white-space: normal;
+    margin-top: 10px;
+    color: #666 !important;
 }
 .list .item.item-accordion {
-  line-height: 38px;
-  padding-top: 0;
-  padding-bottom: 0;
-  transition: 0.09s all linear;
+    line-height: 38px;
+    padding-top: 0;
+    padding-bottom: 0;
+    transition: 0.09s all linear;
 }
 .list .item.item-accordion.ng-hide {
   line-height: 0px;
@@ -131,7 +189,7 @@ $positive : #046380;
    /*background: #ddd;*/
    margin: 0px;
    padding: 23px;
-   border-bottom: 1px solid yellow;
+   border-bottom: 1px solid #046380;
    /*border-top: 1px solid yellow;*/
  }  
 }
@@ -157,18 +215,29 @@ $positive : #046380;
 	position: absolute;
     bottom: 0px;
     background: rgba(17, 17, 17, 0.85);
-    border-bottom: 1px solid yellow;
+    /*border-bottom: 1px solid yellow;*/
 
     h3{
         color: white
     }
-
+    h4{
+      color: white;
+    }
     .template-chevron{
         color: white;
     margin-top: -29px;
+    top:80%;
     }
 }
 
   .footer-bar{
     padding: 0px;
   }
+
+
+.modal-details{
+    padding: 0 0 0 10px;
+    /*border-bottom: 1px solid grey;*/
+}
+  
+

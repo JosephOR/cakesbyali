@@ -1,8 +1,15 @@
 	<!-- <a href="#/landing">test</a> -->
 	<ion-view view-title="login">
-<ion-content>
-	<button type="button" class="button button-block button-positive" ng-click="noLogin()">no login</button>
-	<button type="button" class="button button-block button-positive" on-tap="testbtn()">login</button>
+	<ion-content class="login-bg">
+	<div class="row login-top">
+		<login-options ng-show="!firebaseLogin" class="row"></login-options>
+		<register ng-show="firebaseLogin && !user.created" style="width:100%"></register>
+		<login ng-show="user.created" class="" style="width:100%"></login>
+	</div>
 
-	<a class="facebook-sign-in button button-block" ng-click="facebookSignIn()">Login with Facebook</a>
+	<div class="fb-signin row" ng-show="!firebaseLogin">
+		<div class="col">
+			<a class="facebook-sign-in button button-block button-positive" ng-click="facebookSignIn()">Login with Facebook</a>
+		</div>
+	</div>
 </ion-content></ion-view>
