@@ -20,9 +20,10 @@ angular.module('cakes')
 	      }, {  quality : 75,
 	      		sourceType : Camera.PictureSourceType[source],
 				allowEdit : true,
+				destinationType: Camera.DestinationType.DATA_URL,
 				encodingType: Camera.EncodingType.JPEG,
 				targetWidth: 300,
-				targetHeight: 400,
+				targetHeight: 300,
 				popoverOptions: CameraPopoverOptions,
 				saveToPhotoAlbum: true });
 

@@ -7,6 +7,7 @@ function buildCtrl($ionicModal, $scope, $location, Camera, $firebaseObject, $sta
 	$scope.userRef = new Firebase("https://cakesbyali.firebaseio.com/user");
 	$scope.optionsRef = $rootScope.optionsRef;
 	console.log($scope.optionsRef)
+	$scope.locationText = "Get Location";
 	$scope.loaded = false;
 	$scope.custom = false;
 	$scope.optionsLoaded = false;
@@ -15,6 +16,7 @@ function buildCtrl($ionicModal, $scope, $location, Camera, $firebaseObject, $sta
 	$scope.address = "";
 	$scope.userCake = {};
 	$scope.userCake.name = {}
+	$scope.userCake.image = {}
 	$scope.userCake.topping = {
 		"type": "",
 		"flavor": ""
@@ -35,6 +37,7 @@ function buildCtrl($ionicModal, $scope, $location, Camera, $firebaseObject, $sta
 	 * @return {promise}
 	 */
 	$scope.getLocation = function() {
+		$scope.locationText = "Finding Location...";
 		Location.getLocation().then(function(latLong) {
 			address.getAddress(latLong).then(function(address){
 				if(address){
@@ -56,7 +59,16 @@ function buildCtrl($ionicModal, $scope, $location, Camera, $firebaseObject, $sta
       		// console.log(imageURI);
       		// alert(imageURI)
       		$scope.image = imageURI;
+      		// alert($scope.image);
+      		// $scope.userCake.image.base64 = btoa(imageURI);
+      		// $scope.image = atob($scope.userCake.image.base64)
+      		// $scope.hasImage = true;
+
+      		$scope.userCake.image.base64 = imageURI;
+      		// $scope.image = atob($scope.userCake.image.base64)
       		$scope.hasImage = true;
+
+
       	}, function(err) {
       		console.err(err);
       	});

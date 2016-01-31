@@ -4,22 +4,14 @@
         <h1 class="title">Your cake</h1>
     </ion-header-bar>
     <ion-content>
+        <img ng-src="data:image/jpeg;base64, {{imageUrl}}" ng-show="hasImage">
         <div class="modal-details" ng-repeat="(key, val) in currentFav">
-            <!-- <div class="row">
-                <h3 class="message-input col">{{key}}</h3>
-            </div> -->
-            
-         <!-- <br /> -->
-              	<!-- <ul class="message-input row">
-              		<li ng-repeat="(k, v) in val">
-              			{{k}}:{{v}}
-              		</li>
-              	</ul> -->
-            <div class="" ng-repeat="(k, v) in val">
+          
+            <div class="" ng-repeat="(k, v) in val" ng-hide="k === 'image'">
                 <h3 class="col-25">
                     {{k}}
                 </h3>
-                <div class="row" ng-repeat="(k, v) in v">
+                <div class="row" ng-repeat="(k, v) in v" >
                 	<p class="col-33" >
                     {{k}}
                 	</p>

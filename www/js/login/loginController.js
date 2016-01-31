@@ -19,7 +19,7 @@ angular.module('cakes')
         $scope.userRef.unauth();
         $location.path('/login')
     }
-
+    $scope.userTable  = new Firebase("https://cakesbyali.firebaseio.com/user");
     console.log($rootScope.userID)
     var ref2 = new Firebase("https://cakesbyali.firebaseio.com/CakeOptions");
     $scope.userRef = new Firebase("https://cakesbyali.firebaseio.com");
@@ -90,6 +90,12 @@ angular.module('cakes')
 
 
   // This is the success callback from the login method
+  // 
+  /**
+   * [fbLoginSuccess description]
+   * @param  {rsponse} response fuckoff
+   * @return {jfjg}          jhgjh
+   */
   var fbLoginSuccess = function(response) {
     if (!response.authResponse){
       fbLoginError("Cannot find the authResponse");
@@ -143,27 +149,34 @@ angular.module('cakes')
   //This method is executed when the user press the "Login with facebook" button
   $scope.facebookSignIn = function() {
     facebookConnectPlugin.getLoginStatus(function(success){
+        
       if(success.status === 'connected'){
+        alert(success.status, 'if')
         // The user is logged in and has authenticated your app, and response.authResponse supplies
         // the user's ID, a valid access token, a signed request, and the time the access token
         // and signed request each expire
         console.log('getLoginStatus', success.status);
 
         // Check if we have our user saved
-        var user = UserService.getUser('facebook');
-
-        if(!user.userID){
+        // var user = UserService.getUser('facebook');
+        var logged = false;
+        if(!logged){
+            alert('if')
           getFacebookProfileInfo(success.authResponse)
           .then(function(profileInfo) {
             // For the purpose of this example I will store user data on local storage
-            UserService.setUser({
-              authResponse: success.authResponse,
-              userID: profileInfo.id,
-              name: profileInfo.name,
-              email: profileInfo.email,
-              picture : "http://graph.facebook.com/" + success.authResponse.userID + "/picture?type=large"
-            });
-
+            // UserService.setUser({
+            //   authResponse: success.authResponse,
+            //   userID: profileInfo.id,
+            //   // name: profileInfo.name,
+            //   email: profileInfo.email,
+            //   // picture : "http://graph.facebook.com/" + success.authResponse.userID + "/picture?type=large"
+            // });
+            $scope.userTable.child(profileInfo.id).set({email : "testmail"});
+            // alert("Successfully created user account with uid:", success.authResponse.userID);
+            // $rootScope.userID = success.authResponse.userID;
+            // var ref  = new Firebase("https://cakesbyali.firebaseio.com/user");
+            //     ref.child($rootScope.userID).set({email : "testmail"});
             $state.go('app.home');
           }, function(fail){
             // Fail get profile info
@@ -190,15 +203,35 @@ angular.module('cakes')
       }
     });
   };
+  $scope.doSomething = function(){
+    alert('doSomething')
+    };
 })
 .service('UserService', function() {
   // For the purpose of this example I will store user data on ionic local storage but you should save it on a database
   var setUser = function(user_data) {
-    window.localStorage.starter_facebook_user = JSON.stringify(user_data);
+    alert(user_data.userID)
+    // window.localStorage.starter_facebook_user = JSON.stringify(user_data);
+    // console.log("Successfully created user account with uid:", userData.uid);
+    // $rootScope.userID = userData.uid;
+    // "user": {
+    //   "$uid": {
+    //     ".read": "auth != null && auth.uid == $uid",
+    //     ".write": true
+    //   }
+    // },
+    alert("Successfully created user account with uid:");
+    // $rootScope.userID = user_data.userID;
+        // var ref  = new Firebase("https://cakesbyali.firebaseio.com/user");
+       return $scope.doSomething();
+        // $scope.userTable.child('user_data.userID').set({email : "testmail"});
+        // alert('after adding')
   };
 
   var getUser = function(){
-    return JSON.parse(window.localStorage.starter_facebook_user || '{}');
+    alert('getUser')
+    return null;
+    // return JSON.parse(window.localStorage.starter_facebook_user || '{}');
   };
 
   return {

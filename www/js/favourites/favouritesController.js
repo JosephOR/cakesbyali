@@ -4,15 +4,13 @@ angular.module('cakes')
 function favouritesCtrl($ionicModal, $scope, $location, $rootScope, $firebaseObject){
   	$scope.hasImage = false;
   	$scope.favsLoaded = false;
-  	// var ref2 = new Firebase("https://cakesbyali.firebaseio.com/CakeOptions");
-   //  $rootScope.optionsRef = $firebaseObject(ref2);
-	// $scope.favs = $rootScope.userKey;
+  	
 	$scope.favs = new Firebase("https://cakesbyali.firebaseio.com/user/"+ $rootScope.userID);
-	console.log($scope.favs)
 	$scope.favs.on("value", function(snapshot) {
 		  console.log(snapshot.val());
 		  $scope.favs = snapshot.val();
-		  $scope.favsLoaded = true;
+		  	$scope.favsLoaded = true;
+		  $scope.$apply();
 		}, function (errorObject) {
 		  console.log("The read failed: " + errorObject.code);
 	});
@@ -47,6 +45,19 @@ function favouritesCtrl($ionicModal, $scope, $location, $rootScope, $firebaseObj
 
 	$scope.openModal = function(val) {
 		$scope.currentFav = val;
+		var obj = Object.keys(val);
+		console.log($scope.currentFav[obj])
+		if($scope.currentFav[obj].image){
+			$scope.imageUrl = $scope.currentFav[obj].image.base64;
+			$scope.hasImage = true;
+			console.log('true')
+		}else{
+			// $scope.imageUrl ='img/galleryTemplates/1tier.jpg';
+			// console.log($scope.imageUrl)
+			$scope.hasImage = true;
+		}
+		
+		
 		$scope.modal.show();
 
 	};

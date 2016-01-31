@@ -24,7 +24,7 @@
 			</label>
 		</div>
 		<div class="row" ng-hide="hasAddress">
-			<button type="button" class="button button-block button-positive" ng-click="getLocation()">Get Location</button>
+			<button type="button" class="button button-block button-positive" ng-click="getLocation()">{{locationText}}</button>
 		</div>
 		<div class="row">
 			<div class="col">
@@ -36,7 +36,7 @@
 		</div>
 		
 		<div class="row" ng-show="hasImage">
-			<img src="{{image}}"  width="100%" height="400px" alt="">
+			<img ng-src="data:image/jpeg;base64, {{image}}"  width="100%" height="400px" alt="">
 		</div>
 		
 		<div class="list" >

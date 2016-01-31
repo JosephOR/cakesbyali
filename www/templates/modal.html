@@ -5,7 +5,7 @@
     </ion-header-bar>
     <ion-content>
         <div class="modal-details" ng-repeat="(key, val) in userCake">
-            <div class="row">
+            <div class="row" ng-hide="key === 'image'">
                 <h3 class="message-input col">{{key}}</h3>
             </div>
             
@@ -15,7 +15,7 @@
               			{{k}}:{{v}}
               		</li>
               	</ul> -->
-            <div class="row" ng-repeat="(k, v) in val">
+            <div class="row" ng-repeat="(k, v) in val" ng-hide="key === 'image'">
                 <p class="col-25">
                     {{k}}
                 </p>

@@ -22,12 +22,28 @@ $positive : #466C92;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
+
+div.spinner {
+    margin: auto;
+    position: absolute;
+    top: 30px; left: 0; bottom: 0; right: 0;
+    /*height: 100px;*/
+    text-align: center;
+}
+.spinner svg {
+    width: 19% !important;
+    height: 85px !important;
+}
+.spinner{
+    stroke: $positive;
+}
+
 .register-list{
-  width:100% !important;
+    width:100% !important;
 }
 .login-bg{
-    background-image: url("../img/login.jpg");
-     -webkit-background-size: cover;
+    background-image: url("../img/background.jpg");
+    -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     .scroll{
@@ -35,12 +51,12 @@ $positive : #466C92;
     }
 }
 .login-top{
-        margin-top: 160px;
-    padding-top: 50px;
+    margin-top: 250px;
+    padding-top: 0px;
 }
 .fb-signin{
     /*margin: 0 10px;*/
-    padding-bottom: 50px;
+    padding-bottom: 0px;
     .facebook-sign-in{
         background-color: #3b5998;
         border-color: #3b5998;
@@ -64,7 +80,7 @@ $positive : #466C92;
     /*color:white;*/
 }
 .item-input{
-  padding: 6px 0 5px 35px;
+    padding: 6px 0 5px 35px;
 }
 .button.button-positive{
 	border-color: $positive;
@@ -81,8 +97,8 @@ $positive : #466C92;
     }
 }
 .item-building{
-  position: relative;
-  background: white;
+    position: relative;
+    background: white;
 }
 .ion-chevron-right{
     position: absolute;
@@ -91,14 +107,14 @@ $positive : #466C92;
     color: $positive;
 }
 .temp-chevron{
-  top: 80%;
+    top: 80%;
 }
 .ion-chevron-down{
-  color: $positive
+    color: $positive
 }
 
 .intro-p{
-      padding: 20px 10px;
+    padding: 20px 10px;
     color: #353535;
     font-size: 15px;
 }
@@ -145,15 +161,15 @@ $positive : #466C92;
 }
 
 .build-chevron{
- position: absolute;
- right: 24px;
- top: 25px;
- font-size: 20px;
- -webkit-transition: all .7s ease-in-out;
+    position: absolute;
+    right: 24px;
+    top: 25px;
+    font-size: 20px;
+    -webkit-transition: all .7s ease-in-out;
 }
 .rotate-chevron{
 
- -webkit-transform: rotate(180deg) ;
+    -webkit-transform: rotate(180deg) ;
 }
 .select{
   -webkit-transition: all .7s ease-in-out;
@@ -166,45 +182,39 @@ $positive : #466C92;
 }
 .selectClosed{
   /*display:none;*/
-  max-height:0px;
-  opacity: 0;
-  margin-left:100%;
-
-
-
-
-  /*displ ay: none;*/
+    max-height:0px;
+    opacity: 0;
+    margin-left:100%;
 }
 .selectOpen{
-  max-height:400px;
-  opacity: 1;
-  margin-left:0px;
-  /*visibility: visible;*/
+    max-height:400px;
+    opacity: 1;
+    margin-left:0px;
+    /*visibility: visible;*/
 
 }
 .main-list{
- margin-bottom: 0px !important;
+    margin-bottom: 0px !important;
 
- h4{
-   /*background: #ddd;*/
-   margin: 0px;
-   padding: 23px;
-   border-bottom: 1px solid #046380;
-   /*border-top: 1px solid yellow;*/
- }  
+    h4{
+       /*background: #ddd;*/
+       margin: 0px;
+       padding: 23px;
+       border-bottom: 1px solid #046380;
+       /*border-top: 1px solid yellow;*/
+    }  
 }
 .message-input{
-  width: 100%;
-  max-width: 100%;
-  padding: 0px;
-  textarea{
-   background: lightgrey;
+    width: 100%;
+    max-width: 100%;
+    padding: 0px;
+    textarea{
+        background: lightgrey;
+    }
 
- }
-
- p{
-   white-space: normal
- }
+    p{
+        white-space: normal
+    }
 }
 
 /**/
@@ -221,18 +231,18 @@ $positive : #466C92;
         color: white
     }
     h4{
-      color: white;
+        color: white;
     }
     .template-chevron{
         color: white;
-    margin-top: -29px;
-    top:80%;
+        margin-top: -29px;
+        top:80%;
     }
 }
 
-  .footer-bar{
+.footer-bar{
     padding: 0px;
-  }
+}
 
 
 .modal-details{

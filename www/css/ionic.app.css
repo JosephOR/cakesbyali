@@ -9089,11 +9089,28 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+div.spinner {
+  margin: auto;
+  position: absolute;
+  top: 30px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  /*height: 100px;*/
+  text-align: center; }
+
+.spinner svg {
+  width: 19% !important;
+  height: 85px !important; }
+
+.spinner {
+  stroke: #466C92; }
+
 .register-list {
   width: 100% !important; }
 
 .login-bg {
-  background-image: url("../img/login.jpg");
+  background-image: url("../img/background.jpg");
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover; }
@@ -9101,12 +9118,12 @@ a.button {
     background-color: rgba(255, 255, 255, 0.63); }
 
 .login-top {
-  margin-top: 160px;
-  padding-top: 50px; }
+  margin-top: 250px;
+  padding-top: 0px; }
 
 .fb-signin {
   /*margin: 0 10px;*/
-  padding-bottom: 50px; }
+  padding-bottom: 0px; }
   .fb-signin .facebook-sign-in {
     background-color: #3b5998;
     border-color: #3b5998; }
@@ -9223,8 +9240,7 @@ a.button {
   /*display:none;*/
   max-height: 0px;
   opacity: 0;
-  margin-left: 100%;
-  /*displ ay: none;*/ }
+  margin-left: 100%; }
 
 .selectOpen {
   max-height: 400px;
