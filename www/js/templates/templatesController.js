@@ -11,8 +11,9 @@ function templatesCtrl($scope, $location, $rootScope){
 	  console.log("The read failed: " + errorObject.code);
 	});
 
-	$scope.gotoBuild = function (id) {
- 		$location.path('/build/'+id)
+	$scope.gotoBuild = function (item) {
+		$rootScope.cakeDescription = item.Description;
+ 		$location.path('/build/'+item.Options.NumLayers)
  	}	
 
 

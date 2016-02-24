@@ -1,3 +1,5 @@
+
+
 <div class="list main-list list-border" ng-repeat="(key, value) in cakeOptions.tiers track by $index">
 	<h4 ng-click="activeTier($index)">Tier {{$index+1}}</h4>
 	<div class="select selectHeight" ng-class="openTierId===$index ? 'selectOpen' : 'selectClosed'" >
@@ -27,9 +29,7 @@
 	</div>
 
 </div>
-<div class="row">
-	<button type="button" class="button button-block button-positive" ng-click="addTier()">Add tier</button>
-</div>
+
 <div class="list main-list list-border" ng-repeat="(key, value) in cakeOptions.topping track by $index">
 	<h4 ng-click="activeTopping($index)">Topping</h4>
 	<div class="select " ng-class="openToppingId===$index ? 'selectOpen' : 'selectClosed'" >
@@ -84,3 +84,7 @@
 		<i class="icon ion-chevron-down"></i>
 	</div>
 </div> 
+
+<div class="row">
+	<button type="button" class="button button-block button-positive" ng-click="addTier()">Add tier</button>
+</div>

@@ -11,7 +11,7 @@ function startBuildingCtrl($scope, $location, $firebaseObject, $rootScope){
 	ref.on("value", function(snapshot) {
 		$scope.tiers = snapshot.val();
 		$scope.loaded = true;
-		$scope.$apply();
+		$scope.$applyAsync();
 	}, function (errorObject) {
 	  console.log("The read failed: " + errorObject.code);
 	});
@@ -62,5 +62,11 @@ function startBuildingCtrl($scope, $location, $firebaseObject, $rootScope){
 			$scope.openFillingId = 9;
 		}
 		$scope.openTierId = 9;
+	}
+
+	$scope.selectCake = function (item){
+		console.log(item);
+		$rootScope.cakeDescription = item.Description;
+		$location.path('/build/'+item.Options.NumLayers)
 	}
 }

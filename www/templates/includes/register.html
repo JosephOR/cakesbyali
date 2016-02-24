@@ -1,15 +1,17 @@
 <div class="row">
 	<div class="list register-list">
-	<label class="item item-input">
-		<span class="input-label">Email </span>
-		<input type="text" ng-model="user.email">
-	</label>
-	<label class="item item-input">
-		<span class="input-label">Password </span>
-		<input type="password" ng-model="user.password">
-	</label>
-</div>
+		<label class="item item-input ">
+			<span class="input-label">Email </span>
+			<input type="text" ng-model="user.email">
+		</label>
+		<label class="item item-input ">
+			<span class="input-label">Password </span>
+			<input type="password" ng-model="user.password">
+		</label>
+		<p ng-show="registerError" class="errorMsg">{{registerErrorMsg}}</p>
+	</div>
+
 </div>
 <div class="row">
-	<button type="button" class="button button-block button-positive" ng-click="register()">register</button>
+	<button type="button" class="button button-block button-positive" ng-click="register()">{{registerText}}</button>
 </div>

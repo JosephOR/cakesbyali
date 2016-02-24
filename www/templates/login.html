@@ -1,8 +1,9 @@
 	<!-- <a href="#/landing">test</a> -->
 	<ion-view view-title="login">
 	<ion-content class="login-bg">
+	
 	<div class="row login-top">
-		<login-options ng-show="!firebaseLogin" class="row"></login-options>
+		<login-options ng-show="!firebaseLogin" class="row" style="padding-top:0px; margin-top:-14px"></login-options>
 		<register ng-show="firebaseLogin && !user.created" style="width:100%"></register>
 		<login ng-show="user.created" class="" style="width:100%"></login>
 	</div>

@@ -22,7 +22,23 @@ $positive : #466C92;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
+.item-floating-label{
+    background: white;
 
+    .input-label{
+        opacity: 1
+    }
+}
+.ion-ios-arrow-back{
+    color:white;
+}
+.ion-close-round{
+    position: absolute;
+    left: 10%;
+}
+.back-text{
+    color: white
+}
 div.spinner {
     margin: auto;
     position: absolute;
@@ -47,19 +63,34 @@ div.spinner {
     -moz-background-size: cover;
     background-size: cover;
     .scroll{
-        background-color:rgba(255, 255, 255, 0.63);
+        background-color:white;
     }
 }
 .login-top{
     margin-top: 250px;
-    padding-top: 0px;
+    padding-top: 16px;
 }
+.errorMsg{
+    padding: 5px;
+    background: rgba(245, 134, 126, 0.71);
+    margin-top: 15px;
+    margin-left: -5px;
+    margin-right: -5px;
+    font-size: 13px;
+    color: #D21406;
+    text-align: center;
+}
+
+
+
 .fb-signin{
     /*margin: 0 10px;*/
     padding-bottom: 0px;
+    margin-top: -18px !important;
     .facebook-sign-in{
         background-color: #3b5998;
         border-color: #3b5998;
+            margin: 10px 5px 10px 5px;
     }
 }
 .main-header{
@@ -76,14 +107,21 @@ div.spinner {
 
 }
 .tabs{
-    /*background-color: #ee782d;*/
-    /*color:white;*/
+    background-color: $positive;
+    color:white ;
 }
 .item-input{
     padding: 6px 0 5px 35px;
 }
 .button.button-positive{
 	border-color: $positive;
+    color: $positive;
+    background: none;
+}
+.button.button-positive:hover{
+    border-color: $positive;
+    color: $positive;
+    background: none;
 }
 .list-border{
 	border-bottom: 1px solid #046380;
@@ -97,8 +135,26 @@ div.spinner {
     }
 }
 .item-building{
+    padding-top: 21px;
     position: relative;
     background: white;
+}
+
+.icon-holder{
+    width: 90px;
+    height: 90px;
+    border: 1px solid #466C92;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 80px;
+    padding-top: 5px;
+    color: #466C92;
+    margin: auto;
+}
+.icon-text{
+        font-size: 10px;
+    text-align: center;
+    color: #466C92;
 }
 .ion-chevron-right{
     position: absolute;
@@ -127,7 +183,7 @@ div.spinner {
 }
 /**/
 .item p{
-    white-space: normal;
+    /*white-space: normal;*/
     margin-top: 10px;
     color: #5A5A5A;
     max-width: 78%;
@@ -160,6 +216,9 @@ div.spinner {
 
 }
 
+.build-row{
+    border-bottom: 1px solid $positive;
+}
 .build-chevron{
     position: absolute;
     right: 24px;
@@ -246,8 +305,56 @@ div.spinner {
 
 
 .modal-details{
-    padding: 0 0 0 10px;
+    padding: 0 0 0 0px;
+    margin-top: -5px;
     /*border-bottom: 1px solid grey;*/
 }
-  
+  .back-text{
+    font-size: 15px;
+    color: #ccc;
+  }
+  .bar .button.button-clear .icon:before, .bar .button.button-clear.icon:before, .bar .button.button-clear.icon-left:before, .bar .button.button-clear.icon-right:before {
+    font-size: 15px;
+    line-height: 32px;
+    margin-top: 2px;
+    color: #ccc;
+}
+.key-title{
+    color: $positive;
+    margin-left: 20px;
+    margin-right: 20px;
+    /*border-top: 1px solid $positive;*/
+    /*padding-top: 5px;*/
+}
+.modal-item-holder{
+    background: rgba(70, 108, 146, 0.09);
+    margin-bottom: 2px;
+}
+.modal-image{
+    width: 100%;
+    border-bottom: 3px solid $positive;
+}
+.key, .val{
+    margin:0 0 0 10%;
+    color: #444;
+}
+.key{
+    font-size: 16px;
+}
+.val{
+    font-size: 13px
+}
+.text{
+    margin-top: 5px;
+}
+.text-single{
+    margin-top: 11px;
+    margin-left: 10px;
+}
+.title{
+    margin-right: -5px !important;
+    margin-left: -5px !important; 
+    background: $positive;
+    color: white;
+}
 

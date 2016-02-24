@@ -3,7 +3,7 @@ angular.module('cakes')
 
 
 function buildCtrl($ionicModal, $scope, $location, Camera, $firebaseObject, $stateParams, $rootScope, Location, address){
-	
+	//only used twice - remove, called at login
 	$scope.userRef = new Firebase("https://cakesbyali.firebaseio.com/user");
 	$scope.optionsRef = $rootScope.optionsRef;
 	console.log($scope.optionsRef)
@@ -29,6 +29,11 @@ function buildCtrl($ionicModal, $scope, $location, Camera, $firebaseObject, $sta
 		console.log(message)
 		$scope.userCake.message.text = message;
 	}
+	$scope.checkType = function (type){
+		if(type == 'message'){
+			return 'col-66';
+		}
+	}
 	/**
 	 * Represents a book
 	 * @function
@@ -37,6 +42,7 @@ function buildCtrl($ionicModal, $scope, $location, Camera, $firebaseObject, $sta
 	 * @return {promise}
 	 */
 	$scope.getLocation = function() {
+		console.log('location')
 		$scope.locationText = "Finding Location...";
 		Location.getLocation().then(function(latLong) {
 			address.getAddress(latLong).then(function(address){
@@ -44,31 +50,24 @@ function buildCtrl($ionicModal, $scope, $location, Camera, $firebaseObject, $sta
 					$scope.address = address.results[1].formatted_address;
 					$scope.hasAddress = true;
 					$scope.userCake.address = $scope.address;
+					$scope.locationText = "Get Location";
 					// $scope.$apply();
 				}
 			}, function(error){
 				console.log('no address found')
+				$scope.locationText = "Get Location";
 			})
 		}, function(err) {
 			console.err(err);
 		});
+		
 	};
 	
 	$scope.getPhoto = function(where) {
 		Camera.getPicture(where).then(function(imageURI) {
-      		// console.log(imageURI);
-      		// alert(imageURI)
       		$scope.image = imageURI;
-      		// alert($scope.image);
-      		// $scope.userCake.image.base64 = btoa(imageURI);
-      		// $scope.image = atob($scope.userCake.image.base64)
-      		// $scope.hasImage = true;
-
       		$scope.userCake.image.base64 = imageURI;
-      		// $scope.image = atob($scope.userCake.image.base64)
       		$scope.hasImage = true;
-
-
       	}, function(err) {
       		console.err(err);
       	});
@@ -281,9 +280,6 @@ function buildCtrl($ionicModal, $scope, $location, Camera, $firebaseObject, $sta
 		$scope.userRef.child($rootScope.userID)
 			.child($scope.userCake.name.text)
 			.push($rootScope.userCake);
-		// var pushRef = user.push($rootScope.userCake);
-		// $scope.key = pushRef.key();
-
 		$scope.closeModal();
 		$location.path('/finish')
 	}

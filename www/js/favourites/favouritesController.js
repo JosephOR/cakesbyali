@@ -6,15 +6,22 @@ function favouritesCtrl($ionicModal, $scope, $location, $rootScope, $firebaseObj
   	$scope.favsLoaded = false;
   	
 	$scope.favs = new Firebase("https://cakesbyali.firebaseio.com/user/"+ $rootScope.userID);
+	
 	$scope.favs.on("value", function(snapshot) {
-		  console.log(snapshot.val());
-		  $scope.favs = snapshot.val();
+		  	console.log(snapshot.val());
+		  	$scope.favs = snapshot.val();
 		  	$scope.favsLoaded = true;
-		  $scope.$apply();
+		  	$scope.$apply();
 		}, function (errorObject) {
 		  console.log("The read failed: " + errorObject.code);
 	});
+	$scope.checkType = function (type){
+		if(type == 'message'){
+			return 'col-66';
+		}
 
+	}
+	
  	$scope.startBuilding = function () {
  		$location.path('/startBuilding')
  	}
@@ -22,19 +29,6 @@ function favouritesCtrl($ionicModal, $scope, $location, $rootScope, $firebaseObj
  		$location.path('/templates')
  	}
 
-
- 	$scope.orderCake = function (){
-		// $rootScope.userCake = $scope.userCake;
-	/*open mail*/
-		// get from user input
-		// var user = $scope.userRef.child($scope.userCake.name.text);
-		// var pushRef = user.push($rootScope.userCake);
-		// $scope.key = pushRef.key();
-
-		$scope.closeModal();
-		alert("Your Cake has been ordered")
-		// $location.path('/finish')
-	}
 	$ionicModal.fromTemplateUrl('templates/favs-modal.html', {
 		scope: $scope,
 		animation: 'slide-in-up'

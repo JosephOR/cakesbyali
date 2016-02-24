@@ -1,29 +1,43 @@
-
 <ion-modal-view>
     <ion-header-bar>
-        <h1 class="title">Your cake</h1>
+        <h1 class="title"><i class="icon ion-close-round" ng-click="closeModal()"></i>Your cake</h1>
     </ion-header-bar>
     <ion-content>
-        <div class="modal-details" ng-repeat="(key, val) in userCake">
-            <div class="row" ng-hide="key === 'image'">
-                <h3 class="message-input col">{{key}}</h3>
-            </div>
-            
-         <!-- <br /> -->
-              	<!-- <ul class="message-input row">
-              		<li ng-repeat="(k, v) in val">
-              			{{k}}:{{v}}
-              		</li>
-              	</ul> -->
-            <div class="row" ng-repeat="(k, v) in val" ng-hide="key === 'image'">
-                <p class="col-25">
+        <img ng-src="data:image/jpeg;base64, {{image}}"  width="100%" height="400px" ng-show="hasImage">
+        <div class="" ng-repeat="(key, val) in userCake">
+            <!-- dont show the image text -->
+            <div class="row modal-item-holder" ng-hide="key === 'image' || key === 'address'">
+                <div class="col col-33" >
+                    <h4 class="message-input key-title ">
+                        {{key}}
+                    </h4>   
+                </div>
+                <div class="col " ng-class="checkType(k)" ng-hide="key === 'image' || key === 'address'" ng-repeat="(k, v) in val track by $index" >
+                    <p class=" key" ng-if="k !== 'text'" > <!-- show if the key is not 'text' -->
                     {{k}}
-                </p>
-                <p class="col-33">
+                    </p>
+                    <p class="text-single key" ng-if="k == 'text'"> <!-- show if the key is text -->
                     {{v}}
+                    </p>
+                    <p class="text val" ng-if="k !== 'text'" > <!-- show if the key is not text -->
+                    {{v}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row modal-item-holder">
+            <div class="col col-33" >
+                <h4 class="message-input key-title ">
+                   Address
+                </h4>   
+            </div>
+            <div class="col col-67"  ng-show="hasAddress" >
+                <p class="text val"> <!-- show if the key is not text -->
+                {{address}}
                 </p>
             </div>
         </div>
+
         <div class="row">
             <div class="col">
             <button type="button" class="button button-block button-positive" ng-click="closeModal()">Edit</button>
@@ -32,6 +46,5 @@
             <button type="button" class="button button-block button-positive" ng-click="orderCake()">Proceed</button>
         </div>
         </div>
-
     </ion-content>
 </ion-modal-view>

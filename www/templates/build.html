@@ -1,5 +1,9 @@
 <ion-view view-title="build">
-	<ion-content>
+	<ion-content class="has-footer">
+		<div class="row build-row">
+			<p class="intro-p">{{$root.cakeDescription}}</p>
+		</div>
+	
 		<!-- standard cake -->
 		<div ng-show="!custom" ng-include="'templates/includes/standardCake.html'">
 		</div> 
@@ -10,37 +14,46 @@
 			<label class="item item-input row list-no-border">
 				<div class="input-label message-input">
 					<h3>Extras</h3>
-					<p>This section is to describe any features not selectable above, such as cake theme, 
-						decoration or any custom elements you require</p>
+					<p>This section is to describe any features not selectable above, such as cake theme,decoration or any custom elements you require</p>
 						<br />
 					<textarea name="message" class="row" id="message"  rows="5" ng-model="message" ng-change="setMessage(message)"></textarea>
 				</div>
 			</label>
 		</div>
 		<div class="list" ng-show="hasAddress">
-			<label class="item item-input item-floating-label">
+			<label class="item item-input">
 				<span class="input-label">Location</span>
 				<input type="text" placeholder="Location" ng-model="address">
 			</label>
 		</div>
-		<div class="row" ng-hide="hasAddress">
-			<button type="button" class="button button-block button-positive" ng-click="getLocation()">{{locationText}}</button>
-		</div>
+	
 		<div class="row">
 			<div class="col">
-				<button type="button" class="button button-block button-positive" ng-click="getPhoto('phone')">photo</button>
+				<div class="icon-holder" ng-click="getLocation()">
+					<i class="icon ion-ios-location"></i>
+				</div>
+				<p class="icon-text">{{locationText}}</p>	
+			</div>
+
+			<div class="col">
+				<div class="icon-holder" ng-click="getPhoto('phone')">
+					<i class="icon ion-camera"></i>
+				</div>
+				<p class="icon-text">Take photo</p>
 			</div>
 			<div class="col">
-				<button type="button" class="button button-block button-positive" ng-click="getPhoto('library')">library</button>
+				<div class="icon-holder" ng-click="getPhoto('library')">
+					<i class="icon ion-images"></i>
+				</div>
+				<p class="icon-text">Choose photo</p>
 			</div>
 		</div>
-		
 		<div class="row" ng-show="hasImage">
 			<img ng-src="data:image/jpeg;base64, {{image}}"  width="100%" height="400px" alt="">
 		</div>
 		
 		<div class="list" >
-			<label class="item item-input item-floating-label">
+			<label class="item item-input">
 				<span class="input-label">Cake Name</span>
 				<input type="text" placeholder="Cake Name" ng-model="cakeName" ng-change="setName(cakeName)">
 			</label>

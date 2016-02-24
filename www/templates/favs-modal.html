@@ -1,25 +1,31 @@
 
 <ion-modal-view>
     <ion-header-bar>
-        <h1 class="title">Your cake</h1>
+        <h1 class="title"><i class="icon ion-close-round" ng-click="closeModal()"></i>Your cake</h1>
     </ion-header-bar>
     <ion-content>
-        <img ng-src="data:image/jpeg;base64, {{imageUrl}}" ng-show="hasImage">
+        <img class="modal-image" ng-src="data:image/jpeg;base64, {{imageUrl}}" ng-show="hasImage">
         <div class="modal-details" ng-repeat="(key, val) in currentFav">
-          
-            <div class="" ng-repeat="(k, v) in val" ng-hide="k === 'image'">
-                <h3 class="col-25">
-                    {{k}}
-                </h3>
-                <div class="row" ng-repeat="(k, v) in v" >
-                	<p class="col-33" >
-                    {{k}}
-                	</p>
-                	<p class="col-33" >
-                    {{v}}
-                	</p>
+            <!-- dont show the image text -->
+            <div class="modal-item-holder" ng-repeat="(K, v) in val track by $index" ng-hide="K === 'image'">
+                <div class="row">
+                    <div class="col col-33" ng-hide="key === 'image'">
+                        <h4 class="message-input key-title ">
+                            {{K}}
+                        </h4>   
+                    </div>
+                    <div class="col " ng-class="checkType(K)" ng-repeat="(k, v) in v track by $index" >
+                        <p class=" key" ng-if="k !== 'text'" > <!-- show if the key is not 'text' -->
+                        {{k}}
+                        </p>
+                        <p class="text-single key" ng-if="k == 'text'"> <!-- show if the key is text -->
+                        {{v}}
+                        </p>
+                        <p class="text val" ng-if="k !== 'text'" > <!-- show if the key is not text -->
+                        {{v}}
+                        </p>
+                    </div>
                 </div>
-                
             </div>
         </div>
         <div class="row">
