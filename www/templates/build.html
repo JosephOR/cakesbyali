@@ -57,6 +57,7 @@
 				<span class="input-label">Cake Name</span>
 				<input type="text" placeholder="Cake Name" ng-model="cakeName" ng-change="setName(cakeName)">
 			</label>
+			<p ng-show="nameError" class="errorMsg">Please enter a cake name</p>
 		</div>
 		<div class="row">
 			<button type="button" class="button button-block button-positive" ng-click="openModal()">Order Cake</button>

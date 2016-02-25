@@ -2,17 +2,17 @@ angular.module('cakes')
 .controller("buildCtrl", buildCtrl);
 
 
-function buildCtrl($ionicModal, $scope, $location, Camera, $firebaseObject, $stateParams, $rootScope, Location, address){
+function buildCtrl($ionicModal, $scope, $location, Camera, Confirm, $firebaseObject, $stateParams, $rootScope, Location, address){
 	//only used twice - remove, called at login
 	$scope.userRef = new Firebase("https://cakesbyali.firebaseio.com/user");
 	$scope.optionsRef = $rootScope.optionsRef;
-	console.log($scope.optionsRef)
 	$scope.locationText = "Get Location";
 	$scope.loaded = false;
 	$scope.custom = false;
 	$scope.optionsLoaded = false;
 	$scope.hasAddress = false;
 	$scope.hasFilling = true;
+	$scope.nameError = false;
 	$scope.address = "";
 	$scope.userCake = {};
 	$scope.userCake.name = {}
@@ -221,6 +221,7 @@ function buildCtrl($ionicModal, $scope, $location, Camera, $firebaseObject, $sta
 	}
 
 	$scope.setName = function (name){
+		$scope.nameError = false
 		$scope.userCake.name.text = ""+name;
 	}
 	$scope.setTier = function (value, selectedOption, index){
@@ -274,26 +275,35 @@ function buildCtrl($ionicModal, $scope, $location, Camera, $firebaseObject, $sta
 		$scope.openFillingId = 9;
 	}
 	$scope.orderCake = function (){
-		$rootScope.userCake = $scope.userCake;
+
 		
 		// get from user input
 		$scope.userRef.child($rootScope.userID)
 			.child($scope.userCake.name.text)
 			.push($rootScope.userCake);
 		$scope.closeModal();
-		$location.path('/finish')
+		// $location.path('/finish')
+		Confirm.confirm();
+		
+		
+		
 	}
 	$ionicModal.fromTemplateUrl('templates/modal.html', {
 		scope: $scope,
 		animation: 'slide-in-up'
-	})
-	.then(function(modal) {
-		$scope.modal = modal;
-	});
+		}).then(function(modal) {
+			$scope.modal = modal;
+		});
 
 	$scope.openModal = function() {
-		$scope.modal.show();
-
+		console.log($scope.userCake.name.text)
+		if ($scope.userCake.name.text === '' || $scope.userCake.name.text === undefined){
+			$scope.nameError = true;
+		}
+		else{
+			$rootScope.userCake = $scope.userCake;
+			$scope.modal.show();
+		}
 	};
 	$scope.closeModal = function() {
 		$scope.modal.hide();

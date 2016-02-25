@@ -75,35 +75,3 @@ angular.module("cakes", ["ionic", "firebase"])
 });
 
 
-// ref.authWithOAuthPopup("facebook", function(error, authData) {
-//   if (error) {
-//     console.log("Login Failed!", error);
-//   } else {
-//     console.log("Authenticated successfully with payload:", authData);
-//   }
-// });
-
-// .controller("ListCtrl", function($scope) {
-//    $scope.name = "joe";
-//   alert($scope.name)
-//   console.log("hi2")
-//   $scope.testbtn = function(){
-//     console.log("testbtn");
-//     var ref = new Firebase("https://cakesbyali.firebaseio.com");
-//     ref.authWithOAuthPopup("facebook", function(error, authData) {
-//   if (error) {
-//     console.log("Login Failed!", error);
-//   } else {
-//     console.log("Authenticated successfully with payload:", authData);
-//     alert("logged in")
-//   }
-// });
-
-//   }
-
-// })
-
-// .factory("Items", function($firebaseArray) {
-//   var itemsRef = new Firebase("https://cakesbyali.firebaseio.com");
-//   return $firebaseArray(itemsRef);
-// })

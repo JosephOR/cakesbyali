@@ -47,6 +47,26 @@ angular.module('cakes')
 	      return q.promise;
 	    }
     }
+}])
+.factory('Confirm', ['$state', function($state) {
+
+    return {
+	    confirm: function() {
+	     
+			navigator.notification.alert(
+			    'Thank you, your query has been placed!',  // message
+			    alertDismissed,         // callback
+			    'Cake ordered',            // title
+			    'Done'                  // buttonName
+			);
+	   
+		    function alertDismissed() {
+	    		$state.go('landing');
+			}
+
+		
+	    }
+    }
 }]);
 
 
