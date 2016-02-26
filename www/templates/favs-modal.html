@@ -14,7 +14,7 @@
                             {{K}}
                         </h4>   
                     </div>
-                    <div class="col " ng-class="checkType(K)" ng-repeat="(k, v) in v track by $index" >
+                    <div class="col " ng-class="checkType(K)" ng-repeat="(k, v) in v track by $index" ng-hide="K === 'address'" >
                         <p class=" key" ng-if="k !== 'text'" > <!-- show if the key is not 'text' -->
                         {{k}}
                         </p>
@@ -25,15 +25,20 @@
                         {{v}}
                         </p>
                     </div>
+                    <div class="col" ng-show="K === 'address'">
+                        <div class="col "  >
+                            <p class="text-single val"> <!-- show if the key is not text -->
+                                {{v}}
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col">
             <button type="button" class="button button-block button-positive" ng-click="closeModal()">Return</button>
-        </div>
-        <div class="col">
-            <button type="button" class="button button-block button-positive" ng-click="orderCake()">Re-order</button>
         </div>
         </div>
 

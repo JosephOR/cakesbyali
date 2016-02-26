@@ -13,6 +13,8 @@ function buildCtrl($ionicModal, $scope, $location, Camera, Confirm, $firebaseObj
 	$scope.hasAddress = false;
 	$scope.hasFilling = true;
 	$scope.nameError = false;
+	$scope.hasMessage = false;
+	$scope.nameExistsError = false;
 	$scope.address = "";
 	$scope.userCake = {};
 	$scope.userCake.name = {}
@@ -26,8 +28,13 @@ function buildCtrl($ionicModal, $scope, $location, Camera, Confirm, $firebaseObj
 	*	sets the user message
 	*/
 	$scope.setMessage = function (message){
-		console.log(message)
 		$scope.userCake.message.text = message;
+		console.log($scope.userCake.message.text)
+		if ($scope.userCake.message.text){
+			$scope.hasMessage = true;
+		}else{
+			$scope.hasMessage = false;
+		}
 	}
 	$scope.checkType = function (type){
 		if(type == 'message'){
@@ -42,7 +49,6 @@ function buildCtrl($ionicModal, $scope, $location, Camera, Confirm, $firebaseObj
 	 * @return {promise}
 	 */
 	$scope.getLocation = function() {
-		console.log('location')
 		$scope.locationText = "Finding Location...";
 		Location.getLocation().then(function(latLong) {
 			address.getAddress(latLong).then(function(address){
@@ -54,7 +60,6 @@ function buildCtrl($ionicModal, $scope, $location, Camera, Confirm, $firebaseObj
 					// $scope.$apply();
 				}
 			}, function(error){
-				console.log('no address found')
 				$scope.locationText = "Get Location";
 			})
 		}, function(err) {
@@ -98,7 +103,6 @@ function buildCtrl($ionicModal, $scope, $location, Camera, Confirm, $firebaseObj
 	$scope.getNumLayersFromURL();
 	
 	function createOptions(data, numLayers){
-		console.log(data)
 		$scope.cake = {};
 		$scope.cakeTiers = [];
 		$scope.cakefillings = [];
@@ -146,12 +150,10 @@ function buildCtrl($ionicModal, $scope, $location, Camera, Confirm, $firebaseObj
 		$scope.cakeTopping.push($scope.topping);
 		$scope.cake.topping = $scope.cakeTopping;
 		
-		console.log("cake", $scope.cake)
 		$scope.cakeOptions = $scope.cake;
 		$scope.custom = false;
 	}
 	function createCustomOptions(data){
-		console.log(data)
 		$scope.cake = {};
 		$scope.cakeTiers = [];
 		$scope.cakefillings = [];
@@ -184,7 +186,6 @@ function buildCtrl($ionicModal, $scope, $location, Camera, Confirm, $firebaseObj
 		$scope.cake.topping = $scope.cakeTopping;
 		
 		$scope.custom = true;
-		console.log("cake", $scope.cake)
 		$scope.cakeOptions = $scope.cake;
 		$scope.count++;
 	}
@@ -275,18 +276,12 @@ function buildCtrl($ionicModal, $scope, $location, Camera, Confirm, $firebaseObj
 		$scope.openFillingId = 9;
 	}
 	$scope.orderCake = function (){
-
-		
 		// get from user input
 		$scope.userRef.child($rootScope.userID)
 			.child($scope.userCake.name.text)
 			.push($rootScope.userCake);
 		$scope.closeModal();
-		// $location.path('/finish')
 		Confirm.confirm();
-		
-		
-		
 	}
 	$ionicModal.fromTemplateUrl('templates/modal.html', {
 		scope: $scope,
@@ -296,15 +291,28 @@ function buildCtrl($ionicModal, $scope, $location, Camera, Confirm, $firebaseObj
 		});
 
 	$scope.openModal = function() {
-		console.log($scope.userCake.name.text)
+		var exists;
 		if ($scope.userCake.name.text === '' || $scope.userCake.name.text === undefined){
 			$scope.nameError = true;
 		}
 		else{
-			$rootScope.userCake = $scope.userCake;
-			$scope.modal.show();
-		}
+			$scope.userRef.child($rootScope.userID).once("value", function(snapshot) {
+  				exists = snapshot.child($scope.userCake.name.text).exists();
+  			
+				if(exists){
+					$scope.nameExistsError = true;
+				}
+				else{
+					$scope.nameExistsError = false;
+					$scope.nameError = false;
+					$rootScope.userCake = $scope.userCake;
+					$scope.modal.show();
+				}
+				$scope.$applyAsync();
+			});
+  		};
 	};
+
 	$scope.closeModal = function() {
 		$scope.modal.hide();
 	};

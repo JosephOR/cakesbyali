@@ -29,6 +29,7 @@ $positive : #466C92;
         opacity: 1
     }
 }
+
 .ion-ios-arrow-back{
     color:white;
 }
@@ -67,7 +68,7 @@ div.spinner {
     }
 }
 .login-top{
-    margin-top: 250px;
+    /*margin-top: 250px;*/
     padding-top: 16px;
 }
 .errorMsg{
@@ -268,11 +269,16 @@ div.spinner {
     max-width: 100%;
     padding: 0px;
     textarea{
-        background: lightgrey;
+        background: #fff;
+        border: 1px solid #D2D1D1;
+        resize: none;
+        border-radius: 3px;
     }
 
     p{
-        white-space: normal
+        white-space: normal;
+        width:100% !important;
+        max-width: 100%;
     }
 }
 
@@ -350,6 +356,7 @@ div.spinner {
 .text-single{
     margin-top: 11px;
     margin-left: 10px;
+    color: 474747;
 }
 .title{
     margin-right: -5px !important;
@@ -358,3 +365,16 @@ div.spinner {
     color: white;
 }
 
+.login-b .scroll {
+     background-color: transparent; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-flex {
+    /*flex: 1;*/
+    margin-top: 200px;
+    background: white;
+}

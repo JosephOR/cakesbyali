@@ -6,13 +6,13 @@
         <img ng-src="data:image/jpeg;base64, {{image}}"  width="100%" height="400px" ng-show="hasImage">
         <div class="" ng-repeat="(key, val) in userCake">
             <!-- dont show the image text -->
-            <div class="row modal-item-holder" ng-hide="key === 'image' || key === 'address'">
+            <div class="row modal-item-holder" ng-hide="(key === 'image' || key === 'address') || (key === 'message' && !hasMessage)">
                 <div class="col col-33" >
                     <h4 class="message-input key-title ">
                         {{key}}
                     </h4>   
                 </div>
-                <div class="col " ng-class="checkType(k)" ng-hide="key === 'image' || key === 'address'" ng-repeat="(k, v) in val track by $index" >
+                <div class="col " ng-class="checkType(k)"  ng-repeat="(k, v) in val track by $index" >
                     <p class=" key" ng-if="k !== 'text'" > <!-- show if the key is not 'text' -->
                     {{k}}
                     </p>
@@ -25,14 +25,14 @@
                 </div>
             </div>
         </div>
-        <div class="row modal-item-holder">
+        <div class="row modal-item-holder" ng-show="hasAddress" >
             <div class="col col-33" >
                 <h4 class="message-input key-title ">
                    Address
                 </h4>   
             </div>
-            <div class="col col-67"  ng-show="hasAddress" >
-                <p class="text val"> <!-- show if the key is not text -->
+            <div class="col col-67"  >
+                <p class="text-single val"> <!-- show if the key is not text -->
                 {{address}}
                 </p>
             </div>
@@ -43,7 +43,7 @@
             <button type="button" class="button button-block button-positive" ng-click="closeModal()">Edit</button>
         </div>
         <div class="col">
-            <button type="button" class="button button-block button-positive" ng-click="orderCake()">Proceed</button>
+            <button type="button" class="button button-block button-positive" ng-click="orderCake()">Enquire</button>
         </div>
         </div>
     </ion-content>

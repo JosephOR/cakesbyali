@@ -38,18 +38,13 @@ angular.module("cakes", ["ionic", "firebase"])
     })
     .state('landing', {
         url: "/landing",
-        templateUrl: "templates/landing.html",
+        templateUrl: "templates/Home.html",
         controller: 'landingCtrl'
     })
     .state('startBuilding', {
         url: "/startBuilding",
         templateUrl: "templates/startBuilding.html",
         controller: 'startBuildingCtrl'
-    })
-    .state('gallery', {
-        url: "/gallery",
-        templateUrl: "templates/gallery.html",
-        controller: 'galleryCtrl'
     })
     .state('build', {
         url: "/build/:id",

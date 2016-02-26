@@ -65,7 +65,6 @@ function startBuildingCtrl($scope, $location, $firebaseObject, $rootScope){
 	}
 
 	$scope.selectCake = function (item){
-		console.log(item);
 		$rootScope.cakeDescription = item.Description;
 		$location.path('/build/'+item.Options.NumLayers)
 	}

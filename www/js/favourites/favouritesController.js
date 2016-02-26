@@ -8,7 +8,6 @@ function favouritesCtrl($ionicModal, $scope, $location, $rootScope, $firebaseObj
 	$scope.favs = new Firebase("https://cakesbyali.firebaseio.com/user/"+ $rootScope.userID);
 	
 	$scope.favs.on("value", function(snapshot) {
-		  	console.log(snapshot.val());
 		  	$scope.favs = snapshot.val();
 		  	$scope.favsLoaded = true;
 		  	$scope.$apply();
@@ -19,11 +18,10 @@ function favouritesCtrl($ionicModal, $scope, $location, $rootScope, $firebaseObj
 		if(type == 'message'){
 			return 'col-66';
 		}
-
 	}
 	
  	$scope.startBuilding = function () {
- 		$location.path('/startBuilding')
+ 		$state.go('startBuilding')
  	}
  	$scope.gotoGallery = function () {
  		$location.path('/templates')
@@ -40,35 +38,31 @@ function favouritesCtrl($ionicModal, $scope, $location, $rootScope, $firebaseObj
 	$scope.openModal = function(val) {
 		$scope.currentFav = val;
 		var obj = Object.keys(val);
-		console.log($scope.currentFav[obj])
-		if($scope.currentFav[obj].image){
+		if($scope.currentFav[obj].image !== undefined ){
 			$scope.imageUrl = $scope.currentFav[obj].image.base64;
 			$scope.hasImage = true;
-			console.log('true')
 		}else{
-			// $scope.imageUrl ='img/galleryTemplates/1tier.jpg';
-			// console.log($scope.imageUrl)
-			$scope.hasImage = true;
+			$scope.hasImage = false;
 		}
-		
 		
 		$scope.modal.show();
 
 	};
+
 	$scope.closeModal = function() {
 		$scope.modal.hide();
 	};
-  //Cleanup the modal when we're done with it!
-  $scope.$on('$destroy', function() {
-  	$scope.modal.remove();
-  });
-  // Execute action on hide modal
-  $scope.$on('modal.hidden', function() {
-    // Execute action
-});
-  // Execute action on remove modal
-  $scope.$on('modal.removed', function() {
-    // Execute action
-});
+  	//Cleanup the modal when we're done with it!
+  	$scope.$on('$destroy', function() {
+  		$scope.modal.remove();
+  	});
+  	// Execute action on hide modal
+  	$scope.$on('modal.hidden', function() {
+  	  // Execute action
+	});
+  	// Execute action on remove modal
+  	$scope.$on('modal.removed', function() {
+    	// Execute action
+	});
   	
 }

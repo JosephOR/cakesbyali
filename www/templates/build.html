@@ -1,4 +1,4 @@
-<ion-view view-title="build">
+<ion-view view-title="Customise cake">
 	<ion-content class="has-footer">
 		<div class="row build-row">
 			<p class="intro-p">{{$root.cakeDescription}}</p>
@@ -14,7 +14,7 @@
 			<label class="item item-input row list-no-border">
 				<div class="input-label message-input">
 					<h3>Extras</h3>
-					<p>This section is to describe any features not selectable above, such as cake theme,decoration or any custom elements you require</p>
+					<p class="extra-text">This section is to describe any features not selectable above, such as cake theme,decoration or any custom elements you require</p>
 						<br />
 					<textarea name="message" class="row" id="message"  rows="5" ng-model="message" ng-change="setMessage(message)"></textarea>
 				</div>
@@ -58,6 +58,7 @@
 				<input type="text" placeholder="Cake Name" ng-model="cakeName" ng-change="setName(cakeName)">
 			</label>
 			<p ng-show="nameError" class="errorMsg">Please enter a cake name</p>
+			<p ng-show="nameExistsError" class="errorMsg">Cake name already exists</p>
 		</div>
 		<div class="row">
 			<button type="button" class="button button-block button-positive" ng-click="openModal()">Order Cake</button>

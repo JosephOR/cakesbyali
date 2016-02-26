@@ -1,10 +1,10 @@
-<ion-view view-title="templates">
+<ion-view view-title="Select template">
 	<ion-content  class="has-footer">
 		<div class="row">
 			<p class="intro-p">Please select a cake from the options below to begin customising your cake</p>
 		</div>
-		<div class="template"  ng-repeat="tier in tiers">
-			<img src="img/galleryTemplates/landing1.jpeg" width="100%" height="190px" alt="">
+		<div class="template"  ng-repeat="tier in tiers track by $index">
+			<img src="img/{{images[$index]}}" width="100%" height="190px" alt="">
 			<div class="row template-descrption">
 				<div class="col" ng-click="gotoBuild(tier)">
 					<h4 >{{tier.Name}}</h4>

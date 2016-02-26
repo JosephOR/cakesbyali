@@ -1,4 +1,4 @@
-<ion-view view-title="favorites">
+<ion-view view-title="Favorites">
 <ion-content  class="has-footer">
     <div ng-repeat="(key, value) in favs"
         ng-click="openModal(value)"
@@ -7,7 +7,7 @@
 
         <a class="item item-thumbnail-left" 
         ng-repeat="(k, v) in value track by $index">
-            <img ng-src="img/galleryTemplates/1tier.jpg" ng-if="!v.image.base64">
+            <img ng-src="img/images/1tier.png" ng-if="!v.image.base64">
             <img ng-src="data:image/jpeg;base64,{{v.image.base64}}" ng-if="v.image.base64">
             <h2 class="start-title">{{v.name.text}}</h2>
             <i class="icon ion-chevron-right"></i>

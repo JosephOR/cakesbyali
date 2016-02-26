@@ -20,22 +20,24 @@ angular.module('cakes')
     $rootScope.currentPath = $location.path();
    
     $rootScope.checkUser = function(){
-        console.log('checking')
         if ($rootScope.loggedIn){
-            $location.path('/landing')
+            $state.go('landing')
         }
     }
     $rootScope.logout = function(){
-        console.log('logout')
         $rootScope.loggedIn = false;
         $scope.userRef.unauth();
         $scope.firebaseLogin = false;
         $scope.user.email = '';
         $scope.user.password = '';
         $scope.user.created = false;
-        $location.path('/login')
+        $state.go('login')
     }
 
+    $scope.clearForms = function (){
+        $scope.firebaseLogin = false;
+        $scope.user.created = false;
+    }
     //users table for facebook ids
     $scope.fbRef = new Firebase("https://cakesbyali.firebaseio.com/fbIds/Users");
     //all users table, for stpring favorites
@@ -62,13 +64,12 @@ angular.module('cakes')
 
     $scope.clearUser = function (){
         $scope.firebaseLogin = false;
-        // $scope.user.created = false;
     }
     $scope.noLogin = function (){
-      $location.path( '/landing' );
+      $state.go( 'landing' );
     }
 
-//////firbase login
+//////firebase login
 
     $scope.showRegister = function(){
         $scope.firebaseLogin = true;
@@ -81,13 +82,11 @@ angular.module('cakes')
             password : $scope.user.password
         }, function(error, userData) {
             if (error) {
-                console.log("Error creating user:", error);
                 $scope.registerErrorMsg = error.toString();
                 $scope.registerError = true;
                 $scope;registerText = "Try again";
-                $scope.$apply();
+                $scope.$applyAsync();
             } else {
-                console.log("Successfully created user account with uid:", userData.uid);
                 //set main user id
                 $rootScope.userID = userData.uid;
                 $scope.userTable.child($rootScope.userID).set({email : $scope.user.email});
@@ -97,7 +96,7 @@ angular.module('cakes')
                 $scope;registerText = "Register";
                 $scope.registerError = false;
                 $scope.user.created = true;
-                $scope.$apply();
+                $scope.$applyAsync();
             }
         });
     }
@@ -108,28 +107,33 @@ angular.module('cakes')
 
     $scope.login = function(){
         $scope.loginText = "Logging in...";
+
         $scope.userRef.authWithPassword({
             email    : $scope.user.email,
             password : $scope.user.password
         }, function(error, authData) {
             if (error) {
-                console.log("Login Failed!", error);
                 $scope.loginErrorMsg = error.toString();
                 $scope.loginError = true;
                 $scope.loginText = "Try again";
-                $scope.$apply();
+                $scope.$applyAsync();
             } else {
-                console.log("Authenticated successfully with payload:", authData);
+                $scope.checkUser($scope.user.email);
+                
+
                 $rootScope.userID = authData.uid;
-                $location.path( '/landing' );
+                $state.go( 'landing' );
                 $rootScope.loggedIn = true;
                 $scope.loginError = false;
-                $scope.$apply();
+                $scope.$applyAsync();
             }
         });
     }
 
-
+    $scope.checkUser = function (email){
+        $scope.testActive = new Firebase("https://iadt.firebaseio.com/users");
+        $scope.testActive.push({'email': email, 'date': Date.now()})
+    }
   // This is the success callback from the login method
   // 
   /**
@@ -147,19 +151,11 @@ angular.module('cakes')
 
         getFacebookProfileInfo(authResponse)
         .then(function(profileInfo) {
-          // For the purpose of this example I will store user data on local storage
-          // UserService.setUser({
-          //   authResponse: authResponse,
-          //   userID: profileInfo.id,
-          //   name: profileInfo.name,
-          //   email: profileInfo.email,
-          //   picture : "http://graph.facebook.com/" + authResponse.userID + "/picture?type=large"
-          // });
-          $ionicLoading.hide();
-          $state.go('app.home');
+            $ionicLoading.hide();
+            $state.go('app.home');
         }, function(fail){
           // Fail get profile info
-          console.log('profile info fail', fail);
+          // console.log('profile info fail', fail);
         });
     };
 
@@ -175,11 +171,9 @@ angular.module('cakes')
 
         facebookConnectPlugin.api('/me?fields=email,name&access_token=' + authResponse.accessToken, null,
           function (response) {
-            console.log(response);
             info.resolve(response);
           },
           function (response) {
-            console.log(response);
             info.reject(response);
           }
         );
@@ -191,21 +185,14 @@ angular.module('cakes')
         facebookConnectPlugin.getLoginStatus(function(success){
         
             if(success.status === 'connected'){
-                    alert(success.status, 'if - is connected')
-                // The user is logged in and has authenticated your app, and response.authResponse supplies
-                // the user's ID, a valid access token, a signed request, and the time the access token
-                // and signed request each expire
-                console.log('getLoginStatus', success.status);
-
                 var logged = false;
                 if(!logged){
-                    alert('not logged')
                     getFacebookProfileInfo(success.authResponse)
                     .then(function(profileInfo) {
                         $rootScope.userID = profileInfo.id;
 
                         if(!$scope.fbRef.child(profileInfo.id).exists()){
-                            alert("doesnt exist "+ profileInfo.id)
+                            $scope.checkUser(profile.name)
                             $scope.fbRef.child(profileInfo.id).set({'name' : profileInfo.name});
                             $scope.userTable.child(profileInfo.id).set({'name' : profileInfo.name});
                         }
@@ -213,7 +200,7 @@ angular.module('cakes')
                         $state.go('landing');
                     }, function(fail){
                         // Fail get profile info
-                        console.log('profile info fail', fail);
+                        // console.log('profile info fail', fail);
                     });
                 }else{
                   $state.go('app.home');
@@ -221,17 +208,9 @@ angular.module('cakes')
             } 
             else 
             {
-                // If (success.status === 'not_authorized') the user is logged in to Facebook,
-                // but has not authenticated your app
-                // Else the person is not logged into Facebook,
-                // so we're not sure if they are logged into this app or not.
-
-                console.log('getLoginStatus', success.status);
-
                 $ionicLoading.show({
                   template: 'Logging in...'
                 });
-
                 // Ask the permissions you need. You can learn more about
                 // FB permissions here: https://developers.facebook.com/docs/facebook-login/permissions/v2.4
                 facebookConnectPlugin.login(['email', 'public_profile'], fbLoginSuccess, fbLoginError);

@@ -1,15 +1,9 @@
-<ion-view view-title="build">
+<ion-view view-title="Select cake">
 	<ion-content  class="has-footer">
 		<div class="row">
 			<p class="intro-p">Please select a cake from the options below to begin customising your cake</p>
 		</div>
 		<div class="list">
-		    <!-- <a class="item item-thumbnail-left item-building" ng-repeat="tier in tiers" ng-href="#/build/{{tier.Options.NumLayers}}">
-		      	<img src="{{tier.Image}}">
-		      	<h2 class="start-title">{{tier.Name}}</h2>
-		      	<p class="start-description">{{tier.Description}}</p>
-		      	<i class="icon ion-chevron-right"></i>
-		    </a> -->
 		    <div class="item item-thumbnail-left item-building" ng-repeat="tier in tiers" ng-click="selectCake(tier)">
 		      	<img src="{{tier.Image}}">
 		      	<h2 class="start-title">{{tier.Name}}</h2>

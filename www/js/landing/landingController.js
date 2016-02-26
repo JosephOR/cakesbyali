@@ -7,7 +7,7 @@ function landingCtrl($scope, $location, $rootScope, $firebaseObject){
  	$scope.startBuilding = function () {
  		$location.path('/startBuilding')
  	}
- 	$scope.gotoGallery = function () {
+ 	$scope.gotoTemplates = function () {
  		$location.path('/templates')
  	}
 
